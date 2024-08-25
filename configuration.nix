@@ -8,13 +8,63 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
-      ./home-manager.nix
     ];
 
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
-#TEST VIDEO CAR HERE
+  programs.firefox.enable = true;
+  programs.steam.enable = true;
+  programs.git = {
+    enable = true;
+    config = {
+      user.name = "Nikita0x";
+      user.email = "klirmio21@gmail.com";
+    };
+  };
+  programs.neovim = {
+    enable = true;
+    defaultEditor = true;
+    viAlias = true;
+    vimAlias = true;
+    withPython3 = true;
+    withNodeJs = true;
+  };
+  environment.variables = {
+    EDITOR = "nvim";
+    VISUAL = "nvim";
+  };
+
+# List packages installed in system profile. To search, run:
+  # $ nix search wget
+  environment.systemPackages = with pkgs; [
+  #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+    wget
+    home-manager
+    neofetch
+    tree
+    btop
+    telegram-desktop
+    gnome-tweaks  
+    xclip #to allow yank/copy in nvim 
+    pwvucontrol # if problems with headphones - ou can fix it here
+    vscode
+    android-studio
+    pciutils
+    python3
+    nodejs_22
+    ripgrep
+    fd
+    lazygit
+    tree-sitter
+    libgccjit
+    nerdfonts
+    fzf
+    bun
+    git
+    yarn
+];
+
  # Enable OpenGL
   hardware.graphics = {
     enable = true;
@@ -38,10 +88,6 @@
     # Choose the driver version
     package = config.boot.kernelPackages.nvidiaPackages.stable;
 
-    #test options for PRIME
-    #Enable powermanagement (experimental)
-    #powerManagement.enable = true;
-
     #Enable PRIME
     prime = {
       offload = {
@@ -54,9 +100,6 @@
     };
     
   };
-
-
-# END OF TEST
 
 
   # Bootloader.
@@ -144,64 +187,13 @@
   systemd.services."getty@tty1".enable = false;
   systemd.services."autovt@tty1".enable = false;
 
-  # Install firefox.
-  programs.firefox.enable = true;
-
+ 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
-  environment.systemPackages = with pkgs; [
-  #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-    wget
-    pkgs.home-manager
-    pkgs.neofetch
-    pkgs.tree
-    pkgs.btop
-    pkgs.telegram-desktop
-    pkgs.gnome-tweaks  
-    pkgs.xclip #to allow yank/copy in nvim 
-    pkgs.pwvucontrol # if problems with headphones - ou can fix it here
-    pkgs.vscode
-    pkgs.android-studio
-    pkgs.pciutils
-    pkgs.python3
-    pkgs.nodejs_22
-    pkgs.ripgrep
-    pkgs.fd
-    pkgs.lazygit
-    pkgs.tree-sitter
-
-
-];
-
-  # Git
-# programs.git = {
-#   enable = true;
-#   config = {
-#     user.name = "Nikita0x";
-#     user.email = "klirmio21@gmail.com";
-#   };
-# };
-	
-  # Neovim
-  programs.neovim = {
-   enable = true;
-   viAlias = true;
-   vimAlias = true;
-   withPython3 = true;
-   withNodeJs = true;
-   configure = {
-     customRC = ''
-       set clipboard+=unnamedplus
-       '';
-   };
-    
-  };
   
-  # Enable STEAM
-  programs.steam.enable = true;
+	
+
   
 
   # Some programs need SUID wrappers, can be configured further or are
