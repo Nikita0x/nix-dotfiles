@@ -8,14 +8,17 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      ./home-manager.nix
     ];
+
+
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
 #TEST VIDEO CAR HERE
  # Enable OpenGL
-  hardware.opengl = {
+  hardware.graphics = {
     enable = true;
-    driSupport = true;
-    driSupport32Bit = true;
+    enable32Bit = true;
   };
 
   # Load nvidia driver for Xorg and Wayland
@@ -151,29 +154,37 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
   #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-  #  wget
+    wget
+    pkgs.home-manager
     pkgs.neofetch
     pkgs.tree
     pkgs.btop
     pkgs.telegram-desktop
-    pkgs.gnome.gnome-tweaks  
+    pkgs.gnome-tweaks  
     pkgs.xclip #to allow yank/copy in nvim 
     pkgs.pwvucontrol # if problems with headphones - ou can fix it here
     pkgs.vscode
     pkgs.android-studio
     pkgs.pciutils
+    pkgs.python3
+    pkgs.nodejs_22
+    pkgs.ripgrep
+    pkgs.fd
+    pkgs.lazygit
+    pkgs.tree-sitter
+
+
 ];
 
   # Git
-programs.git = {
-  enable = true;
-  config = {
-    user.name = "Nikita0x";
-    user.email = "klirmio21@gmail.com";
-  };
-};
+# programs.git = {
+#   enable = true;
+#   config = {
+#     user.name = "Nikita0x";
+#     user.email = "klirmio21@gmail.com";
+#   };
+# };
 	
-
   # Neovim
   programs.neovim = {
    enable = true;
@@ -186,8 +197,9 @@ programs.git = {
        set clipboard+=unnamedplus
        '';
    };
+    
   };
-
+  
   # Enable STEAM
   programs.steam.enable = true;
   
