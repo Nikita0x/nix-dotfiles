@@ -1,6 +1,6 @@
 You also need to generate new SSH key for Github (after fresh install)
 
-1. `ssh-keygen -t ed25519 -C "klirmio21@gmail.com"` //generate new key
+1. `ssh-keygen -t ed25519 -C "email@gmail.com"` //generate new key
 2. Enter
 3. Enter
 4. Enter
