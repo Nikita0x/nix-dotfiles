@@ -1,0 +1,272 @@
+// Place your key bindings in this file to override the defaultsauto[]
+[
+	// when in editor - "delete" - deletes a line
+	{
+		"key": "delete",
+		"command": "editor.action.deleteLines",
+		"when": "textInputFocus && !editorReadonly"
+	},
+	// search files by name
+	{
+		"key": "insert",
+		"command": "workbench.action.quickOpen"
+	},
+	// command palette
+	{
+		"key": "ctrl+insert",
+		"command": "workbench.action.showCommands"
+	},
+	{
+		"key": "ctrl+shift+p",
+		"command": "-workbench.action.quickOpenNavigatePreviousInFilePicker",
+		"when": "inFilesPicker && inQuickOpen"
+	},
+	// () => {} - snippet
+	{
+		"key": "numpad_add",
+		"command": "editor.action.insertSnippet",
+		"args": {
+			"snippet": "() => {$1}$0"
+		},
+		"when": "textInputFocus && !editorReadonly"
+	},
+
+	// go to definition
+	{
+		"key": "f2",
+		"command": "editor.action.revealDefinition",
+		"when": "editorHasDefinitionProvider && editorTextFocus && !isInEmbeddedEditor"
+	},
+	// go back from definiton
+	{
+		"key": "f3",
+		"command": "workbench.action.navigateBack",
+		"when": "canNavigateBack"
+	},
+	// rename a file  / symbol
+	{
+		"key": "f1",
+		"command": "editor.action.rename",
+		"when": "editorHasRenameProvider && editorTextFocus && !editorReadonly"
+	},
+	{
+		"key": "f1",
+		"command": "renameFile",
+		"when": "filesExplorerFocus && foldersViewVisible && !explorerResourceIsRoot && !explorerResourceReadonly && !inputFocus"
+	},
+	// collapse all folders
+	// {
+	// 	"key": "[",
+	// 	"command": "workbench.files.action.collapseExplorerFolders",
+	// 	"when": "sideBarFocus"
+	// },
+	// create new folder when sidebar is opened and focused
+	{
+		"key": "f",
+		"command": "explorer.newFolder",
+		"when": "explorerViewletVisible && filesExplorerFocus && !inputFocus"
+	},
+	// create new file when sidebar is opened and focused
+	{
+		"key": "n",
+		"command": "explorer.newFile",
+		"when": "explorerViewletVisible && filesExplorerFocus && !inputFocus"
+	},
+	// create a new file while in the editor (you can specify the directory as well in the name: /src/test.js)
+	{
+		"key": "ctrl+n",
+		"command": "explorer.newFile"
+	},
+	// undo when sidebar is opened and focused
+	{
+		"key": "u",
+		"command": "undo",
+		"when": "explorerViewletVisible && filesExplorerFocus && !inputFocus"
+	},
+	// delete file/folder when sidebar is opened and focused
+	{
+		"key": "d",
+		"command": "moveFileToTrash",
+		"when": "explorerResourceMoveableToTrash && filesExplorerFocus && foldersViewVisible && !explorerResourceReadonly && !inputFocus"
+	},
+	{
+		"key": "delete",
+		"command": "-explorer.moveFileToTrash",
+		"when": "explorerViewletVisible && filesExplorerFocus && !inputFocus"
+	},
+	// toggle sidebar + focus sidebar , close sidebar + focus editor
+	// {
+	// 	"key": "f4",
+	// 	"command": "runCommands",
+	// 	"when": "editorTextFocus",
+	// 	"args": {
+	// 		"commands": [
+	// 			"workbench.action.toggleSidebarVisibility",
+	// 			"workbench.view.explorer",
+	// 			"workbench.action.focusSideBar"
+	// 		]
+	// 	}
+	// },
+	// {
+	// 	"key": "f4",
+	// 	"command": "runCommands",
+	// 	"when": "editorIsOpen && !editorTextFocus && !view.terminal.visible && !panelFocus",
+	// 	"args": {
+	// 		"commands": [
+	// 			"workbench.action.focusActiveEditorGroup",
+	// 			"workbench.action.toggleSidebarVisibility"
+	// 		]
+	// 	}
+	// },
+	{
+		"key": "ctrl+e",
+		"command": "runCommands",
+		"when": "editorTextFocus",
+		"args": {
+			"commands": [
+				"workbench.action.toggleSidebarVisibility",
+				"workbench.view.explorer",
+				"workbench.action.focusSideBar"
+			]
+		}
+	},
+	{
+		"key": "ctrl+e",
+		"command": "runCommands",
+		"when": "!editorTextFocus",
+		"args": {
+			"commands": [
+				"workbench.action.focusActiveEditorGroup",
+				"workbench.action.toggleSidebarVisibility"
+			]
+		}
+	},
+
+	// navigate to next opened file
+	{
+		"key": "alt+right",
+		"command": "workbench.action.nextEditor",
+		"when": "!terminalFocus && !listFocus && !suggestWidgetVisible && !inQuickOpen && !inputBoxFocus"
+	},
+	{
+		"key": "alt+l",
+		"command": "workbench.action.nextEditor",
+		"when": "!terminalFocus && !listFocus && !suggestWidgetVisible && !inQuickOpen && !inputBoxFocus"
+	},
+	// navigate to previous opened file
+	{
+		"key": "alt+left",
+		"command": "workbench.action.previousEditor",
+		"when": "!terminalFocus && !listFocus && !suggestWidgetVisible && !inQuickOpen && !inputBoxFocus"
+	},
+	//in VIM mode
+	{
+		"key": "alt+h",
+		"command": "workbench.action.previousEditor",
+		"when": "!terminalFocus && !listFocus && !suggestWidgetVisible && !inQuickOpen && !inputBoxFocus"
+	},
+	// halfpage up
+	{
+		"key": "ctrl+up",
+		"command": "editorScroll",
+		"args": {
+			"to": "up",
+			"by": "halfPage",
+			"revealCursor": true,
+			"value": 1 // page to scroll
+		},
+		"when": "editorTextFocus"
+	},
+	// halfpage down
+	{
+		"key": "ctrl+down",
+		"command": "editorScroll",
+		"args": {
+			"to": "down",
+			"by": "halfPage",
+			"revealCursor": true,
+			"value": 1 // page to scroll
+		},
+		"when": "editorTextFocus"
+	},
+	{
+		"key": "ctrl+r",
+		"command": "editor.action.showHover"
+	},
+	// close the file explorer when openin a file via "Enter"
+	{
+		"key": "enter",
+		"command": "runCommands",
+		"when": "filesExplorerFocus && foldersViewVisible && !explorerResourceIsFolder && !inputFocus",
+		"args": {
+			"commands": [
+				"explorer.openAndPassFocus",
+				"workbench.action.focusActiveEditorGroup",
+				"workbench.action.toggleSidebarVisibility"
+			]
+		}
+	},
+	// alt 1-3 focus 1-3 split editor screen
+	{
+		"key": "alt+1",
+		"command": "workbench.action.focusFirstEditorGroup"
+	},
+	{
+		"key": "alt+2",
+		"command": "workbench.action.focusSecondEditorGroup"
+	},
+
+	// {
+	// 	"key": "ctrl+q",
+	// 	"command": "editor.action.smartSelect.grow"
+	// },
+
+	/* 
+    EMPTY KEYBINDS!
+    TESTING:  ctrl + e - to toggle file
+    TESTING: ctrl + r - showHover
+    ctrl + q
+    ctrl + t
+    ctrl + b
+    
+    */
+
+	// Commands below remove the default keybinds with this config.
+	{
+		"key": "ctrl+1",
+		"command": "-workbench.action.focusFirstEditorGroup"
+	},
+	{
+		"key": "ctrl+0",
+		"command": "-workbench.action.focusSideBar"
+	},
+	{
+		"key": "ctrl+q",
+		"command": "-workbench.action.quit"
+	},
+	{
+		"key": "ctrl+e",
+		"command": "-workbench.action.quickOpen"
+	},
+	{
+		"key": "ctrl+r",
+		"command": "-workbench.action.openRecent"
+	},
+	{
+		"key": "ctrl+alt+b",
+		"command": "-workbench.action.toggleAuxiliaryBar"
+	},
+	{
+		"key": "ctrl+b",
+		"command": "-workbench.action.toggleSidebarVisibility"
+	},
+	{
+		"key": "f5",
+		"command": "-workbench.action.debug.start",
+		"when": "debuggersAvailable && debugState == 'inactive'"
+	},
+	{
+		"key": "ctrl+t",
+		"command": "-workbench.action.showAllSymbols"
+	}
+]
