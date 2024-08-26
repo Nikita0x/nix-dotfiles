@@ -63,6 +63,7 @@
     bun
     git
     yarn
+    google-chrome
 ];
 
  # Enable OpenGL
