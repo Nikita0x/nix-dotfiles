@@ -64,6 +64,8 @@
     git
     yarn
     google-chrome
+    filezilla
+    postman
 ];
 
  # Enable OpenGL
