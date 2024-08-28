@@ -1,18 +1,18 @@
 return {
 	
 --free AI completion plugin for neovim https://github.com/monkoose/neocodeium
-	{
-		"monkoose/neocodeium",
-		event = "VeryLazy",
-		config = function()
-			local neocodeium = require("neocodeium")
-			neocodeium.setup()
-
-			vim.keymap.set("i", "<A-a>", neocodeium.accept)
-			vim.keymap.set("i", "<A-n>", neocodeium.cycle_or_complete)
-			vim.keymap.set("i", "<A-c>", neocodeium.clear)
-		end,
-	},
+	-- {
+	-- 	"monkoose/neocodeium",
+	-- 	event = "VeryLazy",
+	-- 	config = function()
+	-- 		local neocodeium = require("neocodeium")
+	-- 		neocodeium.setup()
+	--
+	-- 		vim.keymap.set("i", "<A-a>", neocodeium.accept)
+	-- 		vim.keymap.set("i", "<A-n>", neocodeium.cycle_or_complete)
+	-- 		vim.keymap.set("i", "<A-c>", neocodeium.clear)
+	-- 	end,
+	-- },
 	--Faster LuaLS setup for Neovim https://github.com/folke/lazydev.nvim
 	{
 		"folke/lazydev.nvim",

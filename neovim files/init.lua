@@ -35,3 +35,9 @@ require("lazy").setup("plugins", {
 		notify = false,
 	},
 })
+
+-- Load custom syntax highlighting
+require("highlighting.custom_highlights")
+
+-- inspect highlighting
+vim.api.nvim_set_keymap('n', '<leader>i', ':Inspect<CR>', { noremap = true, silent = true })

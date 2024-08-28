@@ -12,6 +12,7 @@ return {
 
 		---@diagnostic disable-next-line: missing-fields
 		treesitter.setup({
+      ensure_installed = { "vue", "javascript", "typescript", "lua", "html", "css" }, -- Specify the parsers you want installed
 			sync_install = false,
 			auto_install = true,
 			indent = { enable = true },

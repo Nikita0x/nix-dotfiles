@@ -57,15 +57,23 @@
     fd
     lazygit
     tree-sitter
-    libgccjit
-    nerdfonts
-    fzf
+    gcc
+    nerdfonts #fix broken icons in neovim
+    fzf #cool fuzzy finder for terminal
+    bat #like cat but with syntax highlight and more
     bun
     git
     yarn
     google-chrome
     filezilla
     postman
+    go
+    skypeforlinux
+    gpick 
+    #screenshots
+		#if launch in background - might freeze in games?
+    # flameshot
+    
 ];
 
  # Enable OpenGL
@@ -136,13 +144,38 @@
     LC_TELEPHONE = "uk_UA.UTF-8";
     LC_TIME = "uk_UA.UTF-8";
   };
-
+	
   # Enable the X11 windowing system.
   services.xserver.enable = true;
 
   # Enable the GNOME Desktop Environment.
-  services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
+  # services.xserver.displayManager.gdm.enable = true;
+  # services.xserver.desktopManager.gnome.enable = true;
+
+  #Enable KDE Plasma
+  # services.displayManager.sddm.enable = true;
+  # services.xserver.desktopManager.plasma5.enable = true;
+
+  #Enable Pantheon Desktop
+	# services.xserver.desktopManager.pantheon.enable = true;
+
+  #Enable MATE Desktop
+  #services.xserver.desktopManager.mate.enable = true;
+
+  #Enable Cinnamon Desktop
+	#might cause freezes in games?
+	services.xserver.desktopManager.cinnamon.enable = true;
+
+#i3 Window manager 
+	
+	#  services.xserver.windowManager.i3 = {
+	# 	enable = true;
+	# 	extraPackages = with pkgs; [
+	# 		dmenu
+	# 		i3status
+	# 		i3lock
+	# 	];
+	# };
 
   # Configure keymap in X11
   services.xserver.xkb = {
@@ -170,7 +203,7 @@
   };
 
   # Enable touchpad support (enabled default in most desktopManager).
-  # services.xserver.libinput.enable = true;
+	# services.xserver.libinput.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.nikita = {
@@ -213,10 +246,10 @@
   # services.openssh.enable = true;
 
   # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
+  # networking.firewall.allowedTCPPorts = [ 5173 ];
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
+  #networking.firewall.enable = false;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

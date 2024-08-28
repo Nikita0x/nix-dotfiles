@@ -1,40 +1,40 @@
 return {
 	--[[
-	--Highly experimental plugin that completely replaces the UI 
+	--highly experimental plugin that completely replaces the ui 
 	--for messages, cmdline and the popupmenu.
 	--https://github.com/folke/noice.nvim
 	--]]
+	-- {
+	-- 	"folke/noice.nvim",
+	-- 	-- todo: redraw issue, folke on vacation till the end of august
+	-- 	tag = "v4.4.7",
+	-- 	event = "VeryLazy",
+	-- 	dependencies = { "muniftanjim/nui.nvim" },
+	-- 	config = function()
+	-- 		require("noice").setup({
+	-- 			lsp = {
+	-- 				override = {
+	-- 					["vim.lsp.util.convert_input_to_markdown_lines"] = true,
+	-- 					["vim.lsp.util.stylize_markdown"] = true,
+	-- 					["cmp.entry.get_documentation"] = true,
+	-- 				},
+	-- 				signature = { opts = { size = { width = 80, height = 10 } } },
+	-- 			},
+	-- 			presets = { command_palette = true, lsp_doc_border = false },
+	-- 		})
+	-- 	end,
+	-- },
+	-- find and replace plugin - https://github.com/magicduck/grug-far.nvim
 	{
-		"folke/noice.nvim",
-		-- TODO: redraw issue, folke on vacation till the end of August
-		tag = "v4.4.7",
-		event = "VeryLazy",
-		dependencies = { "MunifTanjim/nui.nvim" },
-		config = function()
-			require("noice").setup({
-				lsp = {
-					override = {
-						["vim.lsp.util.convert_input_to_markdown_lines"] = true,
-						["vim.lsp.util.stylize_markdown"] = true,
-						["cmp.entry.get_documentation"] = true,
-					},
-					signature = { opts = { size = { width = 80, height = 10 } } },
-				},
-				presets = { command_palette = true, lsp_doc_border = false },
-			})
-		end,
-	},
-	-- Find and replace plugin - https://github.com/MagicDuck/grug-far.nvim
-	{
-		"MagicDuck/grug-far.nvim",
+		"magicduck/grug-far.nvim",
 		config = function()
 			local grug_far = require("grug-far")
 			grug_far.setup()
 
-			vim.keymap.set("n", "<leader>g;", grug_far.grug_far, { desc = "Global find and replace" })
+			vim.keymap.set("n", "<leader>g;", grug_far.grug_far, { desc = "global find and replace" })
 		end,
 	},
-	-- Bufferline (Tabs line) https://github.com/akinsho/bufferline.nvim
+	-- bufferline (tabs line) https://github.com/akinsho/bufferline.nvim
 	{
 		"akinsho/bufferline.nvim",
 		version = "*",
@@ -47,14 +47,14 @@ return {
 					show_buffer_close_icons = false,
 					indicator = { style = "none" },
 					separator_style = { "", "" },
-					offsets = {
-						{
-							filetype = "neo-tree",
-							text = "I use neovim btw ;)",
-							highlight = "Directory",
-							text_align = "left",
-						},
-					},
+					-- offsets = {
+					-- 	{
+					-- 		filetype = "neo-tree",
+					-- 		-- text = "I use neovim btw ;)",
+					-- 		highlight = "Directory",
+					-- 		text_align = "left",
+					-- 	},
+					-- },
 				},
 			})
 
