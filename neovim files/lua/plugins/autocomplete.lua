@@ -35,7 +35,7 @@ return {
 			{ "hrsh7th/cmp-cmdline" },
 			{ "hrsh7th/cmp-nvim-lsp" },
 			{ "hrsh7th/cmp-nvim-lua" },
-
+      { "hrsh7th/cmp-nvim-lsp-signature-help" },
 			{ "saadparwaiz1/cmp_luasnip" },
 			{ "rafamadriz/friendly-snippets" },
 			{ "L3MON4D3/LuaSnip", version = "v2.*", build = "make install_jsregexp" },
@@ -102,6 +102,7 @@ return {
 				},
 				sources = {
 					{ name = "nvim_lsp" },
+					{ name = "nvim_lsp_signature_help" },
 					{ name = "path" },
 					{ name = "luasnip" },
 					{ name = "buffer" },

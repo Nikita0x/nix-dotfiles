@@ -11,6 +11,14 @@
     ];
 
 
+	# for debugging purposes
+
+	# boot.kernel.sysctl = { "kernel.panic_on_oops" = true; };
+	# boot.crashDump.enable = true;
+	# boot.consoleLogLevel = 7;
+	# boot.kernelParams = [ "loglevel=7" ];
+
+	#-----------------
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   programs.firefox.enable = true;
@@ -33,7 +41,7 @@
   environment.variables = {
     EDITOR = "nvim";
     VISUAL = "nvim";
-  };
+};
 
 # List packages installed in system profile. To search, run:
   # $ nix search wget
@@ -67,9 +75,10 @@
     google-chrome
     filezilla
     postman
-    go
-    skypeforlinux
+		go
+		skypeforlinux
     gpick 
+	simplescreenrecorder
     #screenshots
 		#if launch in background - might freeze in games?
     # flameshot
@@ -149,8 +158,8 @@
   services.xserver.enable = true;
 
   # Enable the GNOME Desktop Environment.
-  # services.xserver.displayManager.gdm.enable = true;
-  # services.xserver.desktopManager.gnome.enable = true;
+  services.xserver.displayManager.gdm.enable = true;
+  services.xserver.desktopManager.gnome.enable = true;
 
   #Enable KDE Plasma
   # services.displayManager.sddm.enable = true;
@@ -164,7 +173,7 @@
 
   #Enable Cinnamon Desktop
 	#might cause freezes in games?
-	services.xserver.desktopManager.cinnamon.enable = true;
+	# services.xserver.desktopManager.cinnamon.enable = true;
 
 #i3 Window manager 
 	

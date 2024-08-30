@@ -9,7 +9,8 @@ return {
 		"nvim-tree/nvim-web-devicons",
 		"MunifTanjim/nui.nvim",
 	},
-	keys = { { "<leader>e", "<cmd>Neotree toggle<cr>" } },
+	-- keys = { { "<leader>e", "<cmd>Neotree toggle<cr>" } },
+	keys = { { "<C-e>", "<cmd>Neotree toggle<cr>" } },
 	config = function()
 		vim.fn.sign_define("DiagnosticSignError", { text = " ", texthl = "DiagnosticSignError" })
 		vim.fn.sign_define("DiagnosticSignWarn", { text = " ", texthl = "DiagnosticSignWarn" })

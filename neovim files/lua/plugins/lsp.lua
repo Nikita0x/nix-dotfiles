@@ -43,14 +43,15 @@ return {
 
 				keymap("n", "gD", fzf.lsp_declarations, { desc = "Go to LSP Declarations" })
 				keymap("n", "gr", fzf.lsp_references)
-				keymap("n", "gd", fzf.lsp_definitions)
+				-- keymap("n", "gd", fzf.lsp_definitions)
+				keymap("n", "<F2>", fzf.lsp_definitions)
 				keymap("n", "gi", fzf.lsp_implementations)
 				keymap("n", "gt", fzf.lsp_typedefs)
 
 				keymap({ "n", "v" }, "<leader>ca", fzf.lsp_code_actions)
 
-				keymap("n", "<leader>d", vim.diagnostic.open_float)
-				keymap("n", "<leader>r", vim.lsp.buf.rename)
+				keymap("n", "<leader>d", vim.diagnostic.open_float, { desc = "Show Diagnostics"})
+				-- keymap("n", "<leader>r", vim.lsp.buf.rename)
 				keymap("n", "gh", vim.lsp.buf.hover)
 
 				keymap("n", "<leader>hh", function()

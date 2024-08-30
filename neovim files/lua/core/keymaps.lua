@@ -16,10 +16,10 @@ keymap({ "n", "x" }, "k", "v:count == 0 ? 'gk' : 'k'", { desc = "Up", expr = tru
 keymap({ "n", "x" }, "<Up>", "v:count == 0 ? 'gk' : 'k'", { desc = "Up", expr = true, silent = true })
 
 -- Move to window using the <ctrl> hjkl keys
-keymap("n", "<C-h>", "<C-w>h", { desc = "Go to Left Window", remap = true })
-keymap("n", "<C-j>", "<C-w>j", { desc = "Go to Lower Window", remap = true })
-keymap("n", "<C-k>", "<C-w>k", { desc = "Go to Upper Window", remap = true })
-keymap("n", "<C-l>", "<C-w>l", { desc = "Go to Right Window", remap = true })
+-- keymap("n", "<C-h>", "<C-w>h", { desc = "Go to Left Window", remap = true })
+-- keymap("n", "<C-j>", "<C-w>j", { desc = "Go to Lower Window", remap = true })
+-- keymap("n", "<C-k>", "<C-w>k", { desc = "Go to Upper Window", remap = true })
+-- keymap("n", "<C-l>", "<C-w>l", { desc = "Go to Right Window", remap = true })
 
 -- Resize window using <ctrl> arrow keys
 keymap("n", "<C-Up>", "<cmd>resize +2<cr>", { desc = "Increase Window Height" })
@@ -35,7 +35,7 @@ keymap("i", "<A-k>", "<esc><cmd>m .-2<cr>==gi", { desc = "Move Up" })
 keymap("v", "<A-j>", ":m '>+1<cr>gv=gv", { desc = "Move Down" })
 keymap("v", "<A-k>", ":m '<-2<cr>gv=gv", { desc = "Move Up" })
 
-keymap("n", "<leader>w", "<cmd>update<cr>", { desc = "save buffer" })
+keymap("n", "<leader>w", "<cmd>update<cr>", { desc = "Save file" })
 
 keymap("n", "J", "mzJ`z", { desc = "Join line with next" })
 
@@ -53,3 +53,18 @@ keymap({ "n", "i" }, "<left>", "")
 keymap({ "n", "i" }, "<right>", "")
 keymap({ "n", "i" }, "<up>", "")
 keymap({ "n", "i" }, "<down>", "")
+
+
+-- Remap Alt+h to go to the previous buffer
+keymap('n', '<A-h>', ':bprevious<CR>', { noremap = true, silent = true })
+
+-- Remap Alt+l to go to the next buffer
+keymap('n', '<A-l>', ':bnext<CR>', { noremap = true, silent = true })
+
+
+-- Remap Ctrl+w to close the current buffer
+keymap('n', '<C-w>', ':bd<CR>', { noremap = true, silent = true })
+
+-- Remap F1 to rename a symbol using LSP
+keymap('n', '<F1>', ':lua vim.lsp.buf.rename()<CR>', { noremap = true, silent = true })
+

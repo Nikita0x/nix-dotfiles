@@ -1,7 +1,6 @@
 require("core.settings")
 require("core.keymaps")
 require("core.autocmd")
-
 local clear_processes = require("modules.clear-processes")
 local generate_editorconfig = require("modules.generate-editorconfig")
 
@@ -39,5 +38,28 @@ require("lazy").setup("plugins", {
 -- Load custom syntax highlighting
 require("highlighting.custom_highlights")
 
+-- require'cmp'.setup {
+--   sources = {
+--     { name = 'nvim_lsp_signature_help' }
+--   }
+-- }
+
 -- inspect highlighting
 vim.api.nvim_set_keymap('n', '<leader>i', ':Inspect<CR>', { noremap = true, silent = true })
+
+-- Alternate between current buffer and alterante buffer
+vim.api.nvim_set_keymap('n', '<Tab>', '<C-^>', { noremap = true, silent = true })
+
+-- spectre (global find and replace)
+vim.keymap.set('n', '<leader>S', '<cmd>lua require("spectre").toggle()<CR>', {
+    desc = "Toggle Spectre"
+})
+vim.keymap.set('n', '<leader>sw', '<cmd>lua require("spectre").open_visual({select_word=true})<CR>', {
+    desc = "Search current word"
+})
+vim.keymap.set('v', '<leader>sw', '<esc><cmd>lua require("spectre").open_visual()<CR>', {
+    desc = "Search current word"
+})
+vim.keymap.set('n', '<leader>sf', '<cmd>lua require("spectre").open_file_search({select_word=true})<CR>', {
+    desc = "Search on current file"
+})

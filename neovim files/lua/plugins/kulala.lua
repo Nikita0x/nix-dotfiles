@@ -15,8 +15,8 @@ return {
 			typically appear when the keybinding is used.
 		--]]
 
-		vim.keymap.set("n", "<A-k>", kulala.jump_prev, { noremap = true, silent = true })
-		vim.keymap.set("n", "<A-j>", kulala.jump_next, { noremap = true, silent = true })
-		vim.keymap.set("n", "<A-l>", kulala.run, { noremap = true, silent = true })
+		-- vim.keymap.set("n", "<A-k>", kulala.jump_prev, { noremap = true, silent = true })
+		-- vim.keymap.set("n", "<A-j>", kulala.jump_next, { noremap = true, silent = true })
+		-- vim.keymap.set("n", "<A-l>", kulala.run, { noremap = true, silent = true })
 	end,
 }
