@@ -36,7 +36,7 @@ vim.opt.undofile = true
 vim.opt.timeoutlen = 200
 vim.opt.signcolumn = "yes"
 
-vim.opt.list = true
+vim.opt.list = false
 vim.opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
 vim.opt.fillchars:append({ vert = "▎", horiz = "▁" })
 
