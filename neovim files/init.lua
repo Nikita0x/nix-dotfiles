@@ -45,7 +45,7 @@ require("highlighting.custom_highlights")
 -- }
 
 -- inspect highlighting
-vim.api.nvim_set_keymap('n', '<leader>i', ':Inspect<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>i', ':Inspect<CR>', { noremap = true, silent = true, desc = 'Inspect token' })
 
 -- Alternate between current buffer and alterante buffer
 vim.api.nvim_set_keymap('n', '<Tab>', '<C-^>', { noremap = true, silent = true })

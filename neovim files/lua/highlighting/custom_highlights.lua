@@ -177,9 +177,13 @@ vim.api.nvim_set_hl(0, '@variable.member.javascript', { link = 'Identifier'})
 vim.api.nvim_set_hl(0, '@lsp.type.property.javascript', { link = 'Identifier'})
 vim.api.nvim_set_hl(0, '@keyword.conditional.ternary.typescript', { link = 'Other'})
 vim.api.nvim_set_hl(0, '@punctuation.special.typescript', { link = 'Other'})
+vim.api.nvim_set_hl(0, '@punctuation.special.javascript', { link = 'HtmlTag'})
 
 
-
+-- JSON
+vim.api.nvim_set_hl(0, '@property.json', { link = 'Identifier'})
+vim.api.nvim_set_hl(0, '@punctuation.delimiter.json', { fg = '#FFFFFF'})
+vim.api.nvim_set_hl(0, '@punctuation.bracket.json', { fg = '#FFFFFF'})
 
 vim.api.nvim_set_hl(0, '@constructor.typescript', { fg = "#9872A2", italic = true, underline = false })
 vim.api.nvim_set_hl(0, '@lsp.type.class.typescript', { link = 'Class'})
@@ -190,12 +194,21 @@ vim.api.nvim_set_hl(0, '@variable.typescript', { link = 'Identifier'})
 vim.api.nvim_set_hl(0, '@lsp.type.property.vue', { link = 'Identifier'})
 vim.api.nvim_set_hl(0, '@variable.member.vue', { link = 'Identifier'})
 vim.api.nvim_set_hl(0, '@variable.member.typescript', { link = 'Identifier'})
+vim.api.nvim_set_hl(0, '@keyword.conditional.ternary.javascript', { link = 'Other'})
+vim.api.nvim_set_hl(0, '@lsp.typemod.variable.readonly.javascript', { link = 'Identifier'})
+vim.api.nvim_set_hl(0, '@lsp.typemod.variable.local.javascript', { link = 'Identifier'})
+vim.api.nvim_set_hl(0, '@lsp.typemod.variable.local.vue', { link = 'Identifier'})
+vim.api.nvim_set_hl(0, '@lsp.typemod.variable.defaultLibrary.vue', { link = 'Identifier'})
+vim.api.nvim_set_hl(0, '@lsp.typemod.variable.defaultLibrary.javascript', { link = 'BuiltIn'})
 
 
 -- vim.api.nvim_set_hl(0, '@lsp.typemod.variable.local.javascript', { link = 'Identifier'})
 -- vim.api.nvim_set_hl(0, '@lsp.typemod.variable.readonly.javascript', { link = 'Constant'})
 -- vim.api.nvim_set_hl(0, '@lsp.mod.readonly.javascript', { link = 'Constant'})
--- JSON
-vim.api.nvim_set_hl(0, '@property.json', { link = 'Identifier'})
-vim.api.nvim_set_hl(0, '@punctuation.delimiter.json', { fg = '#FFFFFF'})
-vim.api.nvim_set_hl(0, '@punctuation.bracket.json', { fg = '#FFFFFF'})
+
+
+
+
+--LUA LANGAUGE
+vim.api.nvim_set_hl(0, '@variable.parameter.lua', { link = 'Argument'})
+

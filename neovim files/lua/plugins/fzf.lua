@@ -19,7 +19,7 @@ return {
 		})
 
 		local keymap = function(mode, lhs, rhs)
-			vim.keymap.set(mode, lhs, rhs, { noremap = true, silent = true })
+			vim.keymap.set(mode, lhs, rhs, { noremap = true, silent = true, desc = 'Search files' })
 		end
 		--
 		local fzf = require("fzf-lua")

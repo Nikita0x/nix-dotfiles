@@ -23,6 +23,7 @@ return {
     wk.register({
       ["<leader>"] = {
         d = { vim.diagnostic.open_float, "Show Diagnostics" },
+        f = { vim.diagnostic.open_float, "Telescope" },
         -- Add more mappings here as needed
       },
     })

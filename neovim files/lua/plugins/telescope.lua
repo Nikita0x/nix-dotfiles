@@ -3,7 +3,7 @@ return {
   "nvim-telescope/telescope.nvim",
   version = "0.1.1",  -- You can specify the version or remove this line to use the latest version
   event = "VeryLazy",  -- Load plugin lazily
-  dependencies = { { "nvim-lua/plenary.nvim" } },  -- Required dependency for telescope
+  dependencies = { "nvim-lua/plenary.nvim", "nvim-telescope/telescope-symbols.nvim" },  -- Required dependency for telescope
 
   opts = function()
     local actions = require("telescope.actions")
@@ -48,7 +48,7 @@ return {
 
   -- Key mappings for various Telescope commands
   keys = {
-    -- { "<leader><leader>", "<cmd>Telescope find_files<cr>", desc = "Find Files" },
+		 { "<leader>f", ":WhichKey f<cr>", desc = "+Telescope" },
     { "<leader>fs", "<cmd>Telescope live_grep<cr>", desc = "Live Grep" },
     { "<leader>fb", "<cmd>Telescope buffers<cr>", desc = "List Buffers" },
     { "<leader>fh", "<cmd>Telescope help_tags<cr>", desc = "Find Help Tags" },

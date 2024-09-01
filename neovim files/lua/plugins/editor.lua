@@ -25,15 +25,15 @@ return {
 	-- 	end,
 	-- },
 	-- find and replace plugin - https://github.com/magicduck/grug-far.nvim
-	{
-		"magicduck/grug-far.nvim",
-		config = function()
-			local grug_far = require("grug-far")
-			grug_far.setup()
-
-			vim.keymap.set("n", "<leader>g;", grug_far.grug_far, { desc = "global find and replace" })
-		end,
-	},
+	-- {
+	-- 	"magicduck/grug-far.nvim",
+	-- 	config = function()
+	-- 		local grug_far = require("grug-far")
+	-- 		grug_far.setup()
+	--
+	-- 		vim.keymap.set("n", "<leader>g;", grug_far.grug_far, { desc = "global find and replace" })
+	-- 	end,
+	-- },
 	-- bufferline (tabs line) https://github.com/akinsho/bufferline.nvim
 	{
 		"akinsho/bufferline.nvim",
@@ -67,13 +67,19 @@ return {
 	},
 	-- Statusline - https://github.com/nvim-lualine/lualine.nvim 
 	{
-		"nvim-lualine/lualine.nvim",
-		event = "VeryLazy",
-		dependencies = { "nvim-tree/nvim-web-devicons" },
-		config = function()
-			require("lualine").setup({ options = { globalstatus = true } })
-		end,
-	},
+  -- Statusline plugin
+  "nvim-lualine/lualine.nvim",
+  event = "VeryLazy",
+  dependencies = { "nvim-tree/nvim-web-devicons" },
+  config = function()
+    require("lualine").setup({
+      options = {
+        globalstatus = true,
+        theme = 'auto',  -- Change to any built-in theme you prefer
+      }
+    })
+  end,
+},
 	-- Scrollbar - https://github.com/petertriho/nvim-scrollbar
 	{
 		"petertriho/nvim-scrollbar",

@@ -1,4 +1,4 @@
-vim.keymap.set("n", "<leader>gg", "<cmd>Neogit<CR>", { desc = "Open Git" })
+vim.keymap.set("n", "<leader>g", "<cmd>Neogit<CR>", { desc = "Open Git" })
 
 return {
 	-- An interactive and powerful Git interface for Neovim, inspired by Magit https://github.com/NeogitOrg/neogit
