@@ -1,9 +1,10 @@
 alias rebuild='sudo nixos-rebuild switch'
-alias config='sudoedit nvim /etc/nixos/configuration.nix'
+alias config='sudo nvim /etc/nixos/configuration.nix'
+alias config-update='cp -u /etc/nixos/* ~/github/nix-dotfiles/ '
 alias open='xdg-open'
-alias dotfiles="cd ~/github/dotfiles && code ."
-alias update-dotfiles='cp -u /etc/nixos/* ~/github/dotfiles/'
-alias 180score_web="cd ~/work/score_web && code . && npm run dev "
-alias 180score="cd ~/work/score_mob && code . && npm run dev"
-
+alias nvim-update='cp -ur ~/.config/nvim/* ~/github/nix-dotfiles/nvim/'
+alias 180score_web="cd ~/work/score_web && nvim . && npm run dev "
+alias 180score="cd ~/work/score_mob && nvim . && npm run dev"
+alias config-nvim="nvim ~/.config/nvim"
+export TERM="alacritty"
 export CAPACITOR_ANDROID_STUDIO_PATH="/nix/store/rgqq4nnp8mi8ax07rqa3i6mnm28vwipb-android-studio-stable-2023.3.1.19-unwrapped/bin/studio.sh"
