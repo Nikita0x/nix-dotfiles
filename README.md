@@ -11,3 +11,9 @@ You also need to generate new SSH key for Github (after fresh install)
 #Neovim config
 drop files into `/home/nikita/.config/nvim` 
 
+
+
+testing LazyGit
+a new commit - hahaha JOKAR
+fixup tested here???
+one more 
