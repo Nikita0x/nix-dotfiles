@@ -41,26 +41,26 @@ return {
 
 				local fzf = require("fzf-lua")
 
-				keymap("n", "gD", fzf.lsp_declarations, { desc = "Go to LSP Declarations" })
-				keymap("n", "gr", fzf.lsp_references)
+				-- keymap("n", "gD", fzf.lsp_declarations, { desc = "Go to LSP Declarations" })
+				keymap("n", "<F2>r", fzf.lsp_references, {desc = 'Show References'})
 				-- keymap("n", "gd", fzf.lsp_definitions)
-				keymap("n", "<F2>", fzf.lsp_definitions)
-				keymap("n", "gi", fzf.lsp_implementations)
-				keymap("n", "gt", fzf.lsp_typedefs)
+				keymap("n", "<F2>d", fzf.lsp_definitions, { desc = 'Show definitions'})
+				-- keymap("n", "gi", fzf.lsp_implementations)
+				-- keymap("n", "gt", fzf.lsp_typedefs)
 
-				keymap({ "n", "v" }, "<leader>ca", fzf.lsp_code_actions)
+				-- keymap({ "n", "v" }, "<leader>ca", fzf.lsp_code_actions)
 
 				keymap("n", "<leader>d", vim.diagnostic.open_float, { desc = "Show Diagnostics"})
 				-- keymap("n", "<leader>r", vim.lsp.buf.rename)
 				keymap("n", "gh", vim.lsp.buf.hover)
 
-				keymap("n", "<leader>hh", function()
-					local reversed_value = not vim.lsp.inlay_hint.is_enabled({})
+				-- keymap("n", "<leader>hh", function()
+				-- 	local reversed_value = not vim.lsp.inlay_hint.is_enabled({})
+				--
+				-- 	vim.lsp.inlay_hint.enable(reversed_value)
+				-- end)
 
-					vim.lsp.inlay_hint.enable(reversed_value)
-				end)
-
-				keymap("n", "<leader>rs", ":LspRestart<CR>")
+				keymap("n", "<leader>r", ":LspRestart<CR>", { desc = "Restart LSP"})
 			end,
 		})
 

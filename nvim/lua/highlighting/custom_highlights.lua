@@ -200,6 +200,7 @@ vim.api.nvim_set_hl(0, '@lsp.typemod.variable.local.javascript', { link = 'Ident
 vim.api.nvim_set_hl(0, '@lsp.typemod.variable.local.vue', { link = 'Identifier'})
 vim.api.nvim_set_hl(0, '@lsp.typemod.variable.defaultLibrary.vue', { link = 'Identifier'})
 vim.api.nvim_set_hl(0, '@lsp.typemod.variable.defaultLibrary.javascript', { link = 'BuiltIn'})
+vim.api.nvim_set_hl(0, '@lsp.type.property.typescript', { link = 'Identifier'})
 
 
 -- vim.api.nvim_set_hl(0, '@lsp.typemod.variable.local.javascript', { link = 'Identifier'})

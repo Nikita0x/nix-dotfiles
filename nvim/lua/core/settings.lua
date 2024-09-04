@@ -31,6 +31,7 @@ vim.opt.swapfile = false
 vim.opt.backup = false
 -- vim.opt.wrap = false
 vim.opt.wrap = true 
+vim.opt.linebreak = true
 vim.opt.showmode = false
 vim.opt.undofile = true
 vim.opt.timeoutlen = 200

@@ -58,11 +58,11 @@ return {
 				},
 			})
 
-			vim.keymap.set("n", "<leader>q", require("bufferline").close_others)
+			-- vim.keymap.set("n", "<leader>q", require("bufferline").close_others)
 			-- stylua: ignore
-			vim.keymap.set("n", "L", function() require("bufferline").cycle(1) end)
+			-- vim.keymap.set("n", "L", function() require("bufferline").cycle(1) end)
 			-- stylua: ignore
-			vim.keymap.set("n", "H", function() require("bufferline").cycle(-1) end)
+			-- vim.keymap.set("n", "H", function() require("bufferline").cycle(-1) end)
 		end,
 	},
 	-- Statusline - https://github.com/nvim-lualine/lualine.nvim 
