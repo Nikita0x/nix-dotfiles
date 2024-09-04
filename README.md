@@ -17,3 +17,4 @@ testing LazyGit
 a new commit - hahaha JOKAR
 fixup tested here???
 one more 
+amend my sins 
