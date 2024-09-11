@@ -3,7 +3,7 @@ require("core.keymaps")
 require("core.autocmd")
 local clear_processes = require("modules.clear-processes")
 local generate_editorconfig = require("modules.generate-editorconfig")
-
+ -- JUST ANOTHER TEAST IN VIM
 vim.api.nvim_create_user_command("ClearProcesses", function()
 	clear_processes.clear_processes()
 end, {})

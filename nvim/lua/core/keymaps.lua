@@ -54,17 +54,36 @@ keymap("n", "<N>", "Nzzzv", { desc = "Autocenter on search backward" })
 -- keymap({ "n", "i" }, "<up>", "")
 -- keymap({ "n", "i" }, "<down>", "")
 
-
 -- Remap Alt+h to go to the previous buffer
-keymap('n', '<A-h>', ':bprevious<CR>', { noremap = true, silent = true })
+keymap("n", "<A-h>", ":bprevious<CR>", { noremap = true, silent = true })
 
 -- Remap Alt+l to go to the next buffer
-keymap('n', '<A-l>', ':bnext<CR>', { noremap = true, silent = true })
-
+keymap("n", "<A-l>", ":bnext<CR>", { noremap = true, silent = true })
+-- Remap Left Arrow to go to the previous buffer
+keymap("n", "<A-Left>", ":bprevious<CR>", { noremap = true, silent = true })
+-- Remap Right Arrow to go to the next buffer
+keymap("n", "<A-Right>", ":bnext<CR>", { noremap = true, silent = true })
 
 -- Remap Ctrl+w to close the current buffer
-keymap('n', '<C-w>', ':bd<CR>', { noremap = true, silent = true })
+keymap("n", "<C-w>", ":bd<CR>", { noremap = true, silent = true })
 
 -- Remap F1 to rename a symbol using LSP
-keymap('n', '<F1>', ':lua vim.lsp.buf.rename()<CR>', { noremap = true, silent = true })
+keymap("n", "<F1>", ":lua vim.lsp.buf.rename()<CR>", { noremap = true, silent = true })
 
+-- Override the default 'm' key to mark the current file with Harpoon
+keymap("n", "m", ":lua require('harpoon.mark').add_file()<CR>", { noremap = true, silent = true })
+
+-- Override the default '`' (backtick) key to open the Harpoon menu
+keymap("n", "`", ":lua require('harpoon.ui').toggle_quick_menu()<CR>", { noremap = true, silent = true })
+
+-- Keybindings to navigate to marked files
+keymap("n", "<leader>h1", ":lua require('harpoon.ui').nav_file(1)<CR>", { noremap = true, silent = true }) -- Go to first marked file
+keymap("n", "<leader>h2", ":lua require('harpoon.ui').nav_file(2)<CR>", { noremap = true, silent = true }) -- Go to second marked file
+keymap("n", "<leader>h3", ":lua require('harpoon.ui').nav_file(3)<CR>", { noremap = true, silent = true }) -- Go to third marked file
+keymap("n", "<leader>h4", ":lua require('harpoon.ui').nav_file(4)<CR>", { noremap = true, silent = true }) -- Go to fourth marked file
+
+-- Keybinding to remove the current file from Harpoon
+keymap("n", "<leader>hr", ":lua require('harpoon.mark').rm_file()<CR>", { noremap = true, silent = true })
+
+-- Remove all files from Harpoon
+keymap("n", "<leader>hclr", ":lua require('harpoon.mark').clear_all()<CR>", { noremap = true, silent = true })
