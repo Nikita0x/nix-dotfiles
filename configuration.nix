@@ -4,12 +4,34 @@
 
 { config, pkgs, ... }:
 
+
 {
   imports =
     [ # Include the results of the hardware scan.
+
       ./hardware-configuration.nix
     ];
 
+  # Enable the X11 windowing system.
+  services.xserver.enable = true;
+
+  # Enable the GNOME Desktop Environment.
+   #services.xserver.displayManager.gdm.enable = true;
+   #services.xserver.desktopManager.gnome.enable = true;
+
+  #Enable KDE Plasma
+  # services.displayManager.sddm.enable = true;
+  # services.xserver.desktopManager.plasma5.enable = true;
+
+  #Enable Pantheon Desktop
+	# services.xserver.desktopManager.pantheon.enable = true;
+
+  #Enable MATE Desktop
+  #services.xserver.desktopManager.mate.enable = true;
+
+  #Enable Cinnamon Desktop
+	#might cause freezes in games?
+      	services.xserver.desktopManager.cinnamon.enable = true;
 
 	# for debugging purposes
 
@@ -18,7 +40,6 @@
 	# boot.consoleLogLevel = 7;
 	# boot.kernelParams = [ "loglevel=7" ];
 
-	#-----------------
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   programs.firefox.enable = true;
@@ -41,7 +62,8 @@
   environment.variables = {
     EDITOR = "nvim";
     VISUAL = "nvim";
-};
+  };
+
 
 # List packages installed in system profile. To search, run:
   # $ nix search wget
@@ -75,13 +97,19 @@
     google-chrome
     filezilla
     postman
-		go
-		skypeforlinux
+    go
+    skypeforlinux
     gpick 
-	simplescreenrecorder
-    #screenshots
-		#if launch in background - might freeze in games?
-    # flameshot
+    simplescreenrecorder
+    typescript
+    gparted
+    flameshot
+    qbittorrent-qt5
+    tor-browser
+    calibre
+    prettierd # pretiter daemon needs to be installed for code formatting to be working in neovim (conform plugin)
+    eslint_d
+    stylua
     
 ];
 
@@ -154,26 +182,6 @@
     LC_TIME = "uk_UA.UTF-8";
   };
 	
-  # Enable the X11 windowing system.
-  services.xserver.enable = true;
-
-  # Enable the GNOME Desktop Environment.
-  services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
-
-  #Enable KDE Plasma
-  # services.displayManager.sddm.enable = true;
-  # services.xserver.desktopManager.plasma5.enable = true;
-
-  #Enable Pantheon Desktop
-	# services.xserver.desktopManager.pantheon.enable = true;
-
-  #Enable MATE Desktop
-  #services.xserver.desktopManager.mate.enable = true;
-
-  #Enable Cinnamon Desktop
-	#might cause freezes in games?
-	# services.xserver.desktopManager.cinnamon.enable = true;
 
 #i3 Window manager 
 	
@@ -196,15 +204,15 @@
   services.printing.enable = true;
 
   # Enable sound with pipewire.
-  hardware.pulseaudio.enable = false;
+  hardware.pulseaudio.enable = true;
   security.rtkit.enable = true;
   services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
+    #enable = false;
+    #alsa.enable = true;
+    #alsa.support32Bit = true;
+    #pulse.enable = true;
     # If you want to use JACK applications, uncomment this
-    jack.enable = true;
+    #jack.enable = false;
 
     # use the example session manager (no others are packaged yet so this is enabled by default,
     # no need to redefine it in your config for now)
@@ -258,7 +266,7 @@
   # networking.firewall.allowedTCPPorts = [ 5173 ];
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
-  #networking.firewall.enable = false;
+  networking.firewall.enable = false;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

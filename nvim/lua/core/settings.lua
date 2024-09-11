@@ -6,7 +6,7 @@ vim.opt.encoding = "utf-8"
 vim.opt.fileencoding = "utf-8"
 
 vim.opt.number = true
-vim.opt.relativenumber = true
+vim.opt.relativenumber = false
 vim.opt.cmdheight = 0
 
 vim.opt.cursorline = false
@@ -30,7 +30,7 @@ vim.opt.termguicolors = true
 vim.opt.swapfile = false
 vim.opt.backup = false
 -- vim.opt.wrap = false
-vim.opt.wrap = true 
+vim.opt.wrap = true
 vim.opt.linebreak = true
 vim.opt.showmode = false
 vim.opt.undofile = true

@@ -49,10 +49,10 @@ keymap("n", "<n>", "nzzzv", { desc = "Autocenter on search forward" })
 keymap("n", "<N>", "Nzzzv", { desc = "Autocenter on search backward" })
 
 -- Disable arrow keys :)
-keymap({ "n", "i" }, "<left>", "")
-keymap({ "n", "i" }, "<right>", "")
-keymap({ "n", "i" }, "<up>", "")
-keymap({ "n", "i" }, "<down>", "")
+-- keymap({ "n", "i" }, "<left>", "")
+-- keymap({ "n", "i" }, "<right>", "")
+-- keymap({ "n", "i" }, "<up>", "")
+-- keymap({ "n", "i" }, "<down>", "")
 
 
 -- Remap Alt+h to go to the previous buffer

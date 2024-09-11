@@ -173,6 +173,7 @@ vim.api.nvim_set_hl(0, '@lsp.type.parameter.typescript', { link = 'Argument'})
 vim.api.nvim_set_hl(0, '@variable.parameter.typescript', { link = 'Argument'})
 vim.api.nvim_set_hl(0, '@variable.parameter.javascript', { link = 'Argument'})
 vim.api.nvim_set_hl(0, '@string.escape.javascript', { link = 'Escape'})
+vim.api.nvim_set_hl(0, '@string.escape.typescript', { link = 'Escape'})
 vim.api.nvim_set_hl(0, '@variable.member.javascript', { link = 'Identifier'})
 vim.api.nvim_set_hl(0, '@lsp.type.property.javascript', { link = 'Identifier'})
 vim.api.nvim_set_hl(0, '@keyword.conditional.ternary.typescript', { link = 'Other'})
@@ -202,6 +203,7 @@ vim.api.nvim_set_hl(0, '@lsp.typemod.variable.defaultLibrary.vue', { link = 'Ide
 vim.api.nvim_set_hl(0, '@lsp.typemod.variable.defaultLibrary.javascript', { link = 'BuiltIn'})
 vim.api.nvim_set_hl(0, '@lsp.type.property.typescript', { link = 'Identifier'})
 
+vim.api.nvim_set_hl(0, '@constant.typescript', { link = 'Identifier'})
 
 -- vim.api.nvim_set_hl(0, '@lsp.typemod.variable.local.javascript', { link = 'Identifier'})
 -- vim.api.nvim_set_hl(0, '@lsp.typemod.variable.readonly.javascript', { link = 'Constant'})
