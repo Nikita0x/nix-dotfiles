@@ -1,6 +1,6 @@
 return {
-	
---free AI completion plugin for neovim https://github.com/monkoose/neocodeium
+
+	--free AI completion plugin for neovim https://github.com/monkoose/neocodeium
 	-- {
 	-- 	"monkoose/neocodeium",
 	-- 	event = "VeryLazy",
@@ -25,7 +25,7 @@ return {
 			require("lspkind").init({ preset = "codicons" })
 		end,
 	},
--- A completion plugin for neovim coded in Lua. https://github.com/hrsh7th/nvim-cmp
+	-- A completion plugin for neovim coded in Lua. https://github.com/hrsh7th/nvim-cmp
 
 	{
 		"hrsh7th/nvim-cmp",
@@ -35,7 +35,7 @@ return {
 			{ "hrsh7th/cmp-cmdline" },
 			{ "hrsh7th/cmp-nvim-lsp" },
 			{ "hrsh7th/cmp-nvim-lua" },
-      { "hrsh7th/cmp-nvim-lsp-signature-help" },
+			{ "hrsh7th/cmp-nvim-lsp-signature-help" },
 			{ "saadparwaiz1/cmp_luasnip" },
 			{ "rafamadriz/friendly-snippets" },
 			{ "L3MON4D3/LuaSnip", version = "v2.*", build = "make install_jsregexp" },
@@ -60,8 +60,8 @@ return {
 					["<C-b>"] = cmp.mapping.scroll_docs(-4),
 					["<C-f>"] = cmp.mapping.scroll_docs(4),
 					["<C-Space>"] = cmp.mapping.complete({}),
-					["<C-j>"] = cmp.mapping.select_next_item(),
-					["<C-k>"] = cmp.mapping.select_prev_item(),
+					["<Tab>"] = cmp.mapping.select_next_item(),
+					["<S-Tab>"] = cmp.mapping.select_prev_item(),
 					["<CR>"] = cmp.mapping.confirm({ select = true }),
 					["<S-CR>"] = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true }),
 				}),

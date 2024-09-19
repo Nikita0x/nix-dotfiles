@@ -37,7 +37,7 @@ keymap("v", "<A-k>", ":m '<-2<cr>gv=gv", { desc = "Move Up" })
 
 keymap("n", "<leader>w", "<cmd>update<cr>", { desc = "Save file" })
 
-keymap("n", "J", "mzJ`z", { desc = "Join line with next" })
+-- keymap("n", "J", "mzJ`z", { desc = "Join line with next" })
 
 keymap("n", "x", '"_x', { desc = "Delete without copy to clipboard" })
 keymap("x", "p", '"_dP', { desc = "Paste without copy to clipboard" })
@@ -87,3 +87,43 @@ keymap("n", "<leader>hr", ":lua require('harpoon.mark').rm_file()<CR>", { norema
 
 -- Remove all files from Harpoon
 keymap("n", "<leader>hclr", ":lua require('harpoon.mark').clear_all()<CR>", { noremap = true, silent = true })
+
+-- Remap gcc to <leader>c in normal mode
+vim.api.nvim_set_keymap("n", "<leader>c", "gcc", { noremap = false, silent = true })
+
+-- Remap gc in visual mode to <leader>c
+vim.api.nvim_set_keymap("v", "<leader>c", "gc", { noremap = false, silent = true })
+
+-- Move to the end of the line
+vim.api.nvim_set_keymap("n", "L", "$", { noremap = true, silent = true })
+
+-- Move to the start of the line
+vim.api.nvim_set_keymap("n", "H", "^", { noremap = true, silent = true })
+
+-- Instant indent and de-indent in Normal and Visual modes
+vim.api.nvim_set_keymap("n", ">", ">>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<", "<<", { noremap = true, silent = true })
+
+vim.api.nvim_set_keymap("x", ">", ">gv", { noremap = true })
+vim.api.nvim_set_keymap("x", "<", "<gv", { noremap = true })
+
+-- Extend visual selection downwards line by line
+vim.api.nvim_set_keymap("v", "V", "j", { noremap = true, silent = true })
+
+-- Map F5 to yank selected text to register 'a' and show a message
+vim.api.nvim_set_keymap(
+	"n",
+	"<F5>",
+	[[:let @a = getline("'<", "'>")<CR>:echo "Yanked to register a!"<CR>]],
+	{ noremap = true, silent = true }
+)
+vim.api.nvim_set_keymap("v", "<F5>", [["ay:echo "Yanked to register a!"<CR>]], { noremap = true, silent = true })
+
+-- Map F6 to paste from register 'a' and show a message
+vim.api.nvim_set_keymap("n", "<F6>", [["ap:echo "Pasted from register a!"<CR>]], { noremap = true, silent = true })
+
+-- Remap Tab for completion menu navigation
+vim.api.nvim_set_keymap("i", "<Tab>", [[pumvisible() ? "\<C-n>" : "\<Tab>"]], { expr = true, noremap = true })
+
+-- Remap Shift-Tab for reverse navigation
+vim.api.nvim_set_keymap("i", "<S-Tab>", [[pumvisible() ? "\<C-p>" : "\<S-Tab>"]], { expr = true, noremap = true })

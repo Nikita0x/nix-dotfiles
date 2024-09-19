@@ -42,17 +42,17 @@ return {
 				local fzf = require("fzf-lua")
 
 				-- keymap("n", "gD", fzf.lsp_declarations, { desc = "Go to LSP Declarations" })
-				keymap("n", "<F2>r", fzf.lsp_references, {desc = 'Show References'})
+				keymap("n", "<F2>r", fzf.lsp_references, { desc = "Show References" })
 				-- keymap("n", "gd", fzf.lsp_definitions)
-				keymap("n", "<F2>d", fzf.lsp_definitions, { desc = 'Show definitions'})
+				keymap("n", "<F2>d", fzf.lsp_definitions, { desc = "Show definitions" })
 				-- keymap("n", "gi", fzf.lsp_implementations)
 				-- keymap("n", "gt", fzf.lsp_typedefs)
 
 				-- keymap({ "n", "v" }, "<leader>ca", fzf.lsp_code_actions)
 
-				keymap("n", "<leader>d", vim.diagnostic.open_float, { desc = "Show Diagnostics"})
+				keymap("n", "<leader>d", vim.diagnostic.open_float, { desc = "Show Diagnostics" })
 				-- keymap("n", "<leader>r", vim.lsp.buf.rename)
-				keymap("n", "gh", vim.lsp.buf.hover)
+				keymap("n", "gk", vim.lsp.buf.hover)
 
 				-- keymap("n", "<leader>hh", function()
 				-- 	local reversed_value = not vim.lsp.inlay_hint.is_enabled({})
@@ -60,7 +60,7 @@ return {
 				-- 	vim.lsp.inlay_hint.enable(reversed_value)
 				-- end)
 
-				keymap("n", "<leader>r", ":LspRestart<CR>", { desc = "Restart LSP"})
+				keymap("n", "<leader>r", ":LspRestart<CR>", { desc = "Restart LSP" })
 			end,
 		})
 
@@ -73,6 +73,11 @@ return {
 		end
 
 		local servers = {
+
+			-- Add cssls here
+			-- cssls = {
+			-- 	filetypes = { "css", "scss", "less", "vue" }, -- Ensure it runs for .vue files as well
+			-- },
 			lua_ls = {
 				settings = {
 					Lua = {
@@ -84,6 +89,7 @@ return {
 			rust_analyzer = { settings = { check = { command = "clippy" } } },
 			docker_compose_language_service = { filetypes = { "yml.docker-compose" } },
 
+			--
 			-- Vue take over mode
 			vtsls = {
 				filetypes = { "typescript", "javascript", "vue" },
@@ -91,8 +97,10 @@ return {
 					vtsls = { tsserver = { globalPlugins = {} } },
 				},
 				before_init = function(params, config)
-					local result = vim
-						.system({ "npm", "query", "#vue" }, { cwd = params.workspaceFolders[1].name, text = true })
+					local result = vim.system(
+						{ "npm", "query", "#vue" },
+						{ cwd = params.workspaceFolders[1].name, text = true }
+					)
 						:wait()
 					if result.stdout ~= "[]" then
 						local vuePluginConfig = {

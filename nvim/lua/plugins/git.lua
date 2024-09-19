@@ -19,7 +19,7 @@
 -- 			vim.keymap.set("n", "gvc", diffview.close)
 -- 		end,
 -- 	},
--- 	-- Git integration for buffers https://github.com/lewis6991/gitsigns.nvim 
+-- 	-- Git integration for buffers https://github.com/lewis6991/gitsigns.nvim
 -- }
 -- return {
 --   "kdheepak/lazygit.nvim",
@@ -82,64 +82,64 @@
 -- }
 
 return {
-  -- LazyGit configuration
-  {
-    "kdheepak/lazygit.nvim",
-    cmd = {
-      "LazyGit",
-      "LazyGitConfig",
-      "LazyGitCurrentFile",
-      "LazyGitFilter",
-      "LazyGitFilterCurrentFile",
-    },
-    -- Optional for floating window border decoration
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-    },
-    -- Setting the keybinding for LazyGit
-    keys = {
-      { "<leader>g", "<cmd>LazyGit<cr>", desc = "Open Git" }
-    },
-  },
+	-- LazyGit configuration
+	{
+		"kdheepak/lazygit.nvim",
+		cmd = {
+			"LazyGit",
+			"LazyGitConfig",
+			"LazyGitCurrentFile",
+			"LazyGitFilter",
+			"LazyGitFilterCurrentFile",
+		},
+		-- Optional for floating window border decoration
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+		},
+		-- Setting the keybinding for LazyGit
+		keys = {
+			{ "<leader>g", "<cmd>LazyGit<cr>", desc = "Open Git" },
+		},
+	},
 
-  -- gitsigns.nvim configuration
-  {
-    "lewis6991/gitsigns.nvim",
-    config = function()
-      require("gitsigns").setup({
-        numhl = true,
-        signs = {
-          add = { text = "+" },            -- Added lines
-          change = { text = "~" },         -- Modified lines
-          delete = { text = "-" },         -- Deleted lines
-          topdelete = { text = "-" },      -- Top of the deleted lines
-          changedelete = { text = "~" },   -- Changed lines that were deleted
-          untracked = { text = "?" },      -- Untracked lines (optional sign)
-        },
-        signs_staged = {
-          add = { text = "+" },
-          change = { text = "~" },
-          delete = { text = "-" },
-          topdelete = { text = "-" },
-          changedelete = { text = "~" },
-        },
-        on_attach = function(buffer)
-          local function keymap(mode, l, r)
-            vim.keymap.set(mode, l, r, { buffer = buffer })
-          end
+	-- gitsigns.nvim configuration
+	{
+		"lewis6991/gitsigns.nvim",
+		config = function()
+			require("gitsigns").setup({
+				numhl = true,
+				signs = {
+					add = { text = "+" }, -- Added lines
+					change = { text = "~" }, -- Modified lines
+					delete = { text = "-" }, -- Deleted lines
+					topdelete = { text = "-" }, -- Top of the deleted lines
+					changedelete = { text = "~" }, -- Changed lines that were deleted
+					untracked = { text = "?" }, -- Untracked lines (optional sign)
+				},
+				signs_staged = {
+					add = { text = "+" },
+					change = { text = "~" },
+					delete = { text = "-" },
+					topdelete = { text = "-" },
+					changedelete = { text = "~" },
+				},
+				on_attach = function(buffer)
+					local function keymap(mode, l, r)
+						vim.keymap.set(mode, l, r, { buffer = buffer })
+					end
 
-          local gitsigns = require("gitsigns")
-          local fzf = require("fzf-lua")
+					local gitsigns = require("gitsigns")
+					local fzf = require("fzf-lua")
 
-          -- Customize key mappings if needed
-          -- keymap("n", "gh", gitsigns.preview_hunk)
-          -- keymap("n", "ghs", gitsigns.stage_hunk)
-          -- keymap("n", "ghu", gitsigns.undo_stage_hunk)
-          -- keymap("n", "ghx", gitsigns.reset_hunk)
+					-- Customize key mappings if needed
+					-- keymap("n", "gh", gitsigns.preview_hunk)
+					-- keymap("n", "ghs", gitsigns.stage_hunk)
+					-- keymap("n", "ghu", gitsigns.undo_stage_hunk)
+					-- keymap("n", "ghx", gitsigns.reset_hunk)
 
-          keymap("n", "ghh", fzf.git_bcommits)
-        end,
-      })
-    end,
-  },
+					-- keymap("n", "ghh", fzf.git_bcommits)
+				end,
+			})
+		end,
+	},
 }

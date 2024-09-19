@@ -1,6 +1,6 @@
 return {
 	"nvim-telescope/telescope.nvim",
-	version = "0.1.1", -- You can specify the version or remove this line to use the latest version
+	version = "0.1.4", -- You can specify the version or remove this line to use the latest version
 	event = "VeryLazy", -- Load plugin lazily
 	dependencies = { "nvim-lua/plenary.nvim", "nvim-telescope/telescope-symbols.nvim" }, -- Required dependency for telescope
 

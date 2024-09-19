@@ -1,0 +1,21 @@
+theme = "mytheme"
+
+[keys.normal]
+esc = ["collapse_selection", "keep_primary_selection"]
+tab = ["goto_last_accessed_file"]
+
+[keys.normal.space]
+i = ":tree-sitter-highlight-name"
+u = ":tree-sitter-scopes"
+o = ":tree-sitter-subtree"
+g = [":new", ":insert-output lazygit", ":buffer-close!", ":redraw"]
+
+[editor]
+bufferline = "multiple"
+
+[editor.cursor-shape]
+insert = "bar"
+
+[editor.soft-wrap]
+enable = true
+
