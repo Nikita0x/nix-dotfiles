@@ -90,9 +90,11 @@ keymap("n", "<leader>hclr", ":lua require('harpoon.mark').clear_all()<CR>", { no
 
 -- Remap gcc to <leader>c in normal mode
 vim.api.nvim_set_keymap("n", "<leader>c", "gcc", { noremap = false, silent = true })
+vim.api.nvim_set_keymap("n", "<C-c>", "gcc<Esc>", { noremap = false, silent = true })
 
 -- Remap gc in visual mode to <leader>c
 vim.api.nvim_set_keymap("v", "<leader>c", "gc", { noremap = false, silent = true })
+vim.api.nvim_set_keymap("v", "<C-c>", "gc<Esc>", { noremap = false, silent = true })
 
 -- Move to the end of the line
 vim.api.nvim_set_keymap("n", "L", "$", { noremap = true, silent = true })
@@ -127,3 +129,6 @@ vim.api.nvim_set_keymap("i", "<Tab>", [[pumvisible() ? "\<C-n>" : "\<Tab>"]], { 
 
 -- Remap Shift-Tab for reverse navigation
 vim.api.nvim_set_keymap("i", "<S-Tab>", [[pumvisible() ? "\<C-p>" : "\<S-Tab>"]], { expr = true, noremap = true })
+
+-- Add this to your keymaps setup
+vim.api.nvim_set_keymap("n", "U", "<C-r>", { noremap = true, silent = true })

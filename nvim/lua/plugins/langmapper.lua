@@ -1,9 +1,16 @@
 return {
 	"Wansmer/langmapper.nvim",
 	lazy = false,
-	priority = 1, -- High priority is needed if you will use `autoremap()`
+	priority = 1,
 	config = function()
-		require("langmapper").setup({--[[ your config ]]
+		-- Set up the langmapper plugin
+		local langmapper = require("langmapper")
+
+		langmapper.setup({
+			-- You can add plugin-specific settings here, if needed
 		})
+
+		-- Add the keybindings for both English and Cyrillic layouts
+		langmapper.map("v", "V", "j", { noremap = true, silent = true })
 	end,
 }

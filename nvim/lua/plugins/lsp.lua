@@ -52,7 +52,7 @@ return {
 
 				keymap("n", "<leader>d", vim.diagnostic.open_float, { desc = "Show Diagnostics" })
 				-- keymap("n", "<leader>r", vim.lsp.buf.rename)
-				keymap("n", "gk", vim.lsp.buf.hover)
+				keymap("n", "<leader>k", vim.lsp.buf.hover)
 
 				-- keymap("n", "<leader>hh", function()
 				-- 	local reversed_value = not vim.lsp.inlay_hint.is_enabled({})

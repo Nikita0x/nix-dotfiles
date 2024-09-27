@@ -70,6 +70,7 @@ return {
 		"hrsh7th/nvim-cmp",
 		dependencies = {
 			"hrsh7th/cmp-nvim-lsp-signature-help",
+			"Olical/conjure", -- Ensure Conjure is listed as a dependency
 		},
 		opts = function(_, opts)
 			local cmp = require("cmp")
@@ -106,10 +107,11 @@ return {
 				["<CR>"] = cmp.mapping.confirm({ select = true }),
 			}
 
-			-- Add your signature help and other sources
+			-- Add your signature help and other sources, including Conjure
 			opts.sources = cmp.config.sources(vim.list_extend(opts.sources, {
 				{ name = "nvim_lsp_signature_help" },
-				{ name = "nvim_px_to_rem" }, -- Adding the px to rem source
+				{ name = "conjure" }, -- Added Conjure as a source
+				{ name = "nvim_px_to_rem" }, -- Example additional source
 			}))
 		end,
 	},

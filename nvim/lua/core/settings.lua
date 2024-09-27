@@ -48,3 +48,5 @@ vim.opt.path:append({ "**" })
 vim.opt.wildignore:append({ "*/node_modules/*" })
 vim.opt.clipboard:append({ "unnamed", "unnamedplus" })
 vim.opt.formatoptions:append({ "r" })
+vim.opt.langmap =
+	"йq,цw,уe,кr,еt,нy,гu,шi,щo,зp,х[,ъ],фa,ыs,вd,аf,пg,рh,оj,лk,дl,э',ё`,ЯQ,ЦW,УE,КR,ЕT,НY,ГU,ШI,ЩO,ЗP,Х{,Ъ},ФA,ЫS,ВD,АF,ПG,РH,ОJ,ЛK,ДL,Э\",Ё~"
