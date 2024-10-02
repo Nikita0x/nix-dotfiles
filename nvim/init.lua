@@ -51,9 +51,15 @@ vim.api.nvim_set_keymap("n", "<leader>i", ":Inspect<CR>", { noremap = true, sile
 vim.api.nvim_set_keymap("n", "<Tab>", "<C-^>", { noremap = true, silent = true })
 
 -- spectre (global find and replace)
-vim.keymap.set("n", "<leader>S", '<cmd>lua require("spectre").toggle()<CR>', {
-	desc = "Toggle Spectre",
-})
+-- vim.keymap.set("n", "<leader>S", '<cmd>lua require("spectre").toggle()<CR>', {
+-- 	desc = "Toggle Spectre",
+-- })
+vim.api.nvim_set_keymap(
+	"n",
+	"s",
+	[[:let @/ = input("Search for: ") <Bar> %s//\=input("Replace with: ")/gc<CR>]],
+	{ noremap = true, silent = false }
+)
 vim.keymap.set("n", "<leader>sw", '<cmd>lua require("spectre").open_visual({select_word=true})<CR>', {
 	desc = "Search current word",
 })
