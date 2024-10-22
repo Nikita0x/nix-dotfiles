@@ -1,8 +1,22 @@
+#One page introduction to Nix, the language - https://github.com/tazjin/nix-1p
+
 # Edit this configuration file to define what should be installed on
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 { config, pkgs, ... }:
 
+# In order to be able to easily download packages from unstable channel, we have three options:
+# flakes, channels and fetching tarball. I am choosing fetching tarball as it is the most simplest
+# and remains in this configuration file only. Now we can install either stable or unstable packages. 
+# Tarball is downloaded only once and then cached, so when you rebuild - it will not be downloaded again,
+# unless there’s been a change in the URL or if it needs to invalidate the cache 
+# Example:
+# android-studio - stable channel
+# unstable.android-studio - unstable channel
+let
+  unstableTarball = fetchTarball "https://github.com/NixOS/nixpkgs/archive/nixos-unstable.tar.gz";
+  unstable = import unstableTarball { config = config.nixpkgs.config; };
+in
 
 {
   imports =
@@ -13,12 +27,19 @@
   services.xserver.enable = true;
 
   # Enable the GNOME Desktop Environment.
-    # services.xserver.displayManager.gdm.enable = true;
-    # services.xserver.desktopManager.gnome.enable = true;
+    services.xserver.displayManager.gdm.enable = true;
+    services.xserver.desktopManager.gnome.enable = true;
 
   # Enable Cinnamon Desktop
-   services.xserver.desktopManager.cinnamon.enable = true;
+   # services.xserver.desktopManager.cinnamon.enable = true;
 
+
+  # Enable automatic garbage collection
+  nix.gc = {
+    automatic = true;
+    dates = "weekly";
+    options = "--delete-older-than 7d";
+  };        
 
 #HYPERLND tiling manager test
 
@@ -38,12 +59,6 @@
   #   (nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" ]; })
   # ];
   
-       # Enable automatic garbage collection
-       nix.gc = {
-          automatic = true;
-          dates = "weekly";
-          options = "--delete-older-than 7d";
-        };        
 	# for debugging purposes
 	# boot.kernel.sysctl = { "kernel.panic_on_oops" = true; };
 	# boot.crashDump.enable = true;
@@ -90,7 +105,7 @@
     xclip #to allow yank/copy in nvim 
     pwvucontrol # if problems with headphones - ou can fix it here
     vscode
-    android-studio
+    unstable.android-studio
     pciutils
     python3
     python312Packages.pip 
