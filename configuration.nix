@@ -2,6 +2,8 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 { config, pkgs, ... }:
+
+
 {
   imports =
     [ # Include the results of the hardware scan.
@@ -11,11 +13,11 @@
   services.xserver.enable = true;
 
   # Enable the GNOME Desktop Environment.
-   # services.xserver.displayManager.gdm.enable = true;
-   # services.xserver.desktopManager.gnome.enable = true;
+    # services.xserver.displayManager.gdm.enable = true;
+    # services.xserver.desktopManager.gnome.enable = true;
 
-  #Enable Cinnamon Desktop
-	services.xserver.desktopManager.cinnamon.enable = true;
+  # Enable Cinnamon Desktop
+   services.xserver.desktopManager.cinnamon.enable = true;
 
 
 #HYPERLND tiling manager test
@@ -48,6 +50,7 @@
 	# boot.consoleLogLevel = 7;
 	# boot.kernelParams = [ "loglevel=7" ];
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  #programs.fish.enable = true;
   programs.firefox.enable = true;
   programs.steam.enable = true;
   programs.git = {
@@ -65,6 +68,10 @@
     withPython3 = true;
     withNodeJs = true;
   };
+  programs.tmux = {
+    enable = true;
+    clock24 = true;
+  };
   environment.variables = {
     EDITOR = "nvim";
     VISUAL = "nvim";
@@ -79,13 +86,14 @@
     tree
     btop
     telegram-desktop
-    gnome-tweaks  
+    gnome.gnome-tweaks  
     xclip #to allow yank/copy in nvim 
     pwvucontrol # if problems with headphones - ou can fix it here
     vscode
     android-studio
     pciutils
     python3
+    python312Packages.pip 
     nodejs_22
     ripgrep
     fd
@@ -127,11 +135,21 @@
     zip
     unzip
     screenkey #для вывода на экран кнопок
+    inkscape
+
+    #ruby stuff
+    ruby_3_3
+    sqlite
+    rubyPackages_3_3.websocket-driver
 
     #clojure stuff
     leiningen
     clojure
     clojure-lsp
+    zig_0_11
+    
+    #c stuff
+    raylib
 
     nodePackages.typescript-language-server
     nodePackages.vscode-langservers-extracted
@@ -157,10 +175,12 @@
     ];
   
    # Enable OpenGL
-  hardware.graphics = {
+  hardware.opengl = {
     enable = true;
-    enable32Bit = true;
-  };
+    driSupport = true;
+    driSupport32Bit = true; 
+   };
+
   # Load nvidia driver for Xorg and Wayland
   services.xserver.videoDrivers = ["nvidia"];
   hardware.nvidia = {
@@ -247,7 +267,8 @@
   # Enable touchpad support (enabled default in most desktopManager).
 	# services.xserver.libinput.enable = true;
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.nikita = {
+   users.users.nikita = {
+    #shell = pkgs.fish;
     isNormalUser = true;
     description = "nikita";
     extraGroups = [ "networkmanager" "wheel" ];
