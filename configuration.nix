@@ -16,14 +16,69 @@
 let
   unstableTarball = fetchTarball "https://github.com/NixOS/nixpkgs/archive/nixos-unstable.tar.gz";
   unstable = import unstableTarball { config = config.nixpkgs.config; };
-in
+
+
+
+ # # Import the android-nixpkgs repository to use androidenv
+ #  androidNixpkgs = pkgs.callPackage (import (builtins.fetchGit {
+ #    url = "https://github.com/tadfisher/android-nixpkgs.git";
+ #  })) {};
+
+ #  androidenv = androidNixpkgs.androidenv;  # Make sure to define androidenv here
+  
+     #Add Android SDK setup
+     android-nixpkgs = pkgs.callPackage (import (builtins.fetchGit {
+       url = "https://github.com/tadfisher/android-nixpkgs.git";
+     })) {
+       channel = "stable";
+     };
+
+     # Create an Android SDK package with selected components
+     androidSdk = android-nixpkgs.sdk (sdkPkgs: with sdkPkgs; [
+       cmdline-tools-latest
+       build-tools-34-0-0
+       platform-tools
+       platforms-android-34
+       emulator
+     ]);  
+
+
+
+    # androidComposition = androidenv.composeAndroidPackages {
+    #     cmdLineToolsVersion = "8.0";
+    #     toolsVersion = "26.1.1";
+    #     platformToolsVersion = "30.0.5";
+    #     buildToolsVersions = [ "30.0.3" ];
+    #     includeEmulator = false;
+    #     emulatorVersion = "30.3.4";
+    #     platformVersions = [ "28" "29" "30" ];
+    #     includeSources = false;
+    #     includeSystemImages = false;
+    #     systemImageTypes = [ "google_apis_playstore" ];
+    #     abiVersions = [ "armeabi-v7a" "arm64-v8a" ];
+    #     cmakeVersions = [ "3.10.2" ];
+    #     includeNDK = true;
+    #     ndkVersions = ["22.0.7026061"];
+    #     useGoogleAPIs = false;
+    #     useGoogleTVAddOns = false;
+    #     includeSDKManager = true;
+    #     includeAVDManager = true;
+    #     includeExtras = [
+    #       "extras;google;gcm"
+    #     ];
+    #   };
+
+
+    
+
+  in
 
 {
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
     ];
-  # Enable the X11 windowing system.
+
   services.xserver.enable = true;
 
   # Enable the GNOME Desktop Environment.
@@ -66,6 +121,8 @@ in
 	# boot.kernelParams = [ "loglevel=7" ];
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   #programs.fish.enable = true;
+  #enable Android Debug Bridge
+  programs.adb.enable = true;
   programs.firefox.enable = true;
   programs.steam.enable = true;
   programs.git = {
@@ -94,7 +151,27 @@ in
 # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
+
+
+    (pkgs.androidenv.emulateApp {
+          name = "emulate-MyAndroidApp";
+          platformVersion = "VanillaIceCream";
+          abiVersion = "x86_64"; # armeabi-v7a, mips, x86_64
+          systemImageType = "google_apis_playstore";
+        })  
   #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+
+    # androidComposition.androidsdk
+    androidSdk
+
+    xorg.libX11
+    xorg.libxcb
+    xorg.libXrender
+    xorg.libXext
+    xorg.libXdamage
+    xorg.libxkbfile
+
+    unstable.code-cursor
     wget
     home-manager
     neofetch
@@ -144,7 +221,6 @@ in
     kakoune-lsp
     anydesk
     sass
-    dart
     php83Packages.composer
     openjdk
     zip
@@ -166,6 +242,10 @@ in
     #c stuff
     raylib
 
+    # flutter stuff   
+    dart
+    flutter319
+
     nodePackages.typescript-language-server
     nodePackages.vscode-langservers-extracted
     vscode-langservers-extracted 
@@ -174,7 +254,7 @@ in
     rust-analyzer
     tailwindcss-language-server
     nodePackages_latest.vls 
-
+    
  ];
 
 
@@ -286,7 +366,10 @@ in
     #shell = pkgs.fish;
     isNormalUser = true;
     description = "nikita";
-    extraGroups = [ "networkmanager" "wheel" ];
+
+    # - adbusers - https://nixos.wiki/wiki/Android#adb_setup
+    # - kvm      - https://nixos.wiki/wiki/Android#hardware_acceleration
+    extraGroups = [ "networkmanager" "wheel" "adbusers" "kvm" ];
     packages = with pkgs; [
     #  thunderbird
     ];
@@ -300,6 +383,7 @@ in
  
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
+  nixpkgs.config.android_sdk.accept_license = true;
   
 	
   
