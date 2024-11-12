@@ -16,62 +16,7 @@
 let
   unstableTarball = fetchTarball "https://github.com/NixOS/nixpkgs/archive/nixos-unstable.tar.gz";
   unstable = import unstableTarball { config = config.nixpkgs.config; };
-
-
-
- # # Import the android-nixpkgs repository to use androidenv
- #  androidNixpkgs = pkgs.callPackage (import (builtins.fetchGit {
- #    url = "https://github.com/tadfisher/android-nixpkgs.git";
- #  })) {};
-
- #  androidenv = androidNixpkgs.androidenv;  # Make sure to define androidenv here
-  
-     #Add Android SDK setup
-     android-nixpkgs = pkgs.callPackage (import (builtins.fetchGit {
-       url = "https://github.com/tadfisher/android-nixpkgs.git";
-     })) {
-       channel = "stable";
-     };
-
-     # Create an Android SDK package with selected components
-     androidSdk = android-nixpkgs.sdk (sdkPkgs: with sdkPkgs; [
-       cmdline-tools-latest
-       build-tools-34-0-0
-       platform-tools
-       platforms-android-34
-       emulator
-     ]);  
-
-
-
-    # androidComposition = androidenv.composeAndroidPackages {
-    #     cmdLineToolsVersion = "8.0";
-    #     toolsVersion = "26.1.1";
-    #     platformToolsVersion = "30.0.5";
-    #     buildToolsVersions = [ "30.0.3" ];
-    #     includeEmulator = false;
-    #     emulatorVersion = "30.3.4";
-    #     platformVersions = [ "28" "29" "30" ];
-    #     includeSources = false;
-    #     includeSystemImages = false;
-    #     systemImageTypes = [ "google_apis_playstore" ];
-    #     abiVersions = [ "armeabi-v7a" "arm64-v8a" ];
-    #     cmakeVersions = [ "3.10.2" ];
-    #     includeNDK = true;
-    #     ndkVersions = ["22.0.7026061"];
-    #     useGoogleAPIs = false;
-    #     useGoogleTVAddOns = false;
-    #     includeSDKManager = true;
-    #     includeAVDManager = true;
-    #     includeExtras = [
-    #       "extras;google;gcm"
-    #     ];
-    #   };
-
-
-    
-
-  in
+in
 
 {
   imports =
@@ -80,6 +25,7 @@ let
     ];
 
   services.xserver.enable = true;
+  services.dbus.enable = true;
 
   # Enable the GNOME Desktop Environment.
     services.xserver.displayManager.gdm.enable = true;
@@ -144,25 +90,17 @@ let
     enable = true;
     clock24 = true;
   };
+  programs.ladybird = {
+    enable = true;
+  };
   environment.variables = {
     EDITOR = "nvim";
     VISUAL = "nvim";
   };
+
 # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-
-
-    (pkgs.androidenv.emulateApp {
-          name = "emulate-MyAndroidApp";
-          platformVersion = "VanillaIceCream";
-          abiVersion = "x86_64"; # armeabi-v7a, mips, x86_64
-          systemImageType = "google_apis_playstore";
-        })  
-  #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-
-    # androidComposition.androidsdk
-    androidSdk
 
     xorg.libX11
     xorg.libxcb
@@ -171,6 +109,16 @@ let
     xorg.libXdamage
     xorg.libxkbfile
 
+    albert
+    # figma-linux
+
+    #useful for reverse engineering I guess?
+    file
+    binutils
+    unixtools.xxd
+    # arc-browser
+
+    sublime-merge-dev
     unstable.code-cursor
     wget
     home-manager
@@ -227,6 +175,7 @@ let
     unzip
     screenkey #для вывода на экран кнопок
     inkscape
+    krita
 
     #ruby stuff
     ruby_3_3
@@ -254,6 +203,7 @@ let
     rust-analyzer
     tailwindcss-language-server
     nodePackages_latest.vls 
+    nodePackages_latest."@volar/vue-language-server"
     
  ];
 
@@ -337,9 +287,11 @@ let
 	# };
   # Configure keymap in X11
   services.xserver.xkb = {
-    layout = "us";
+    layout = "us,ua,ru";
     variant = "";
+    options = "grp:alt_shift_toggle";  
   };
+
   # Enable CUPS to print documents.
   services.printing.enable = true;
 
@@ -383,6 +335,7 @@ let
  
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
+  # nixpkgs.config.allowUnsupportedSystem = true;
   nixpkgs.config.android_sdk.accept_license = true;
   
 	
