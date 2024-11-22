@@ -16,6 +16,57 @@
 let
   unstableTarball = fetchTarball "https://github.com/NixOS/nixpkgs/archive/nixos-unstable.tar.gz";
   unstable = import unstableTarball { config = config.nixpkgs.config; };
+
+
+
+
+
+ # # Import the android-nixpkgs repository to use androidenv
+ #  androidNixpkgs = pkgs.callPackage (import (builtins.fetchGit {
+ #    url = "https://github.com/tadfisher/android-nixpkgs.git";
+ #  })) {};
+ #  androidenv = androidNixpkgs.androidenv;  # Make sure to define androidenv here
+  
+     #Add Android SDK setup
+     android-nixpkgs = pkgs.callPackage (import (builtins.fetchGit {
+       url = "https://github.com/tadfisher/android-nixpkgs.git";
+     })) {
+       channel = "stable";
+     };
+     # Create an Android SDK package with selected components
+     androidSdk = android-nixpkgs.sdk (sdkPkgs: with sdkPkgs; [
+       cmdline-tools-latest
+       build-tools-34-0-0
+       platform-tools
+       platforms-android-34
+       emulator
+     ]);  
+    # androidComposition = androidenv.composeAndroidPackages {
+    #     cmdLineToolsVersion = "8.0";
+    #     toolsVersion = "26.1.1";
+    #     platformToolsVersion = "30.0.5";
+    #     buildToolsVersions = [ "30.0.3" ];
+    #     includeEmulator = false;
+    #     emulatorVersion = "30.3.4";
+    #     platformVersions = [ "28" "29" "30" ];
+    #     includeSources = false;
+    #     includeSystemImages = false;
+    #     systemImageTypes = [ "google_apis_playstore" ];
+    #     abiVersions = [ "armeabi-v7a" "arm64-v8a" ];
+    #     cmakeVersions = [ "3.10.2" ];
+    #     includeNDK = true;
+    #     ndkVersions = ["22.0.7026061"];
+    #     useGoogleAPIs = false;
+    #     useGoogleTVAddOns = false;
+    #     includeSDKManager = true;
+    #     includeAVDManager = true;
+    #     includeExtras = [
+    #       "extras;google;gcm"
+    #     ];
+    #   };
+
+
+  
 in
 
 {
@@ -86,10 +137,12 @@ in
     withPython3 = true;
     withNodeJs = true;
   };
+  #terminal multiplexer
   programs.tmux = {
     enable = true;
     clock24 = true;
   };
+  #new browser but is very alpha
   programs.ladybird = {
     enable = true;
   };
@@ -102,14 +155,32 @@ in
   # $ nix search wget
   environment.systemPackages = with pkgs; [
 
+
+
+  
+(pkgs.androidenv.emulateApp {
+          name = "emulate-MyAndroidApp";
+          platformVersion = "VanillaIceCream";
+          abiVersion = "x86_64"; # armeabi-v7a, mips, x86_64
+          systemImageType = "google_apis_playstore";
+        })  
+  #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+    # androidComposition.androidsdk
+    androidSdk
+
+    tldr
+
+    unstable.zed-editor
     xorg.libX11
     xorg.libxcb
     xorg.libXrender
     xorg.libXext
     xorg.libXdamage
     xorg.libxkbfile
+    #test internet speed
+    speedtest-cli
 
-    albert
+    albert #keyboard launcher
     # figma-linux
 
     #useful for reverse engineering I guess?
@@ -118,17 +189,17 @@ in
     unixtools.xxd
     # arc-browser
 
-    sublime-merge-dev
+    sublime-merge-dev #gui git
     unstable.code-cursor
     wget
     home-manager
     neofetch
-    tree
+    tree 
     btop
     telegram-desktop
     gnome.gnome-tweaks  
     xclip #to allow yank/copy in nvim 
-    pwvucontrol # if problems with headphones - ou can fix it here
+    pwvucontrol # if problems with headphones - you can fix it here
     vscode
     unstable.android-studio
     pciutils
@@ -158,15 +229,10 @@ in
     flameshot
     qbittorrent-qt5
     tor-browser
-    calibre
+    calibre #reader for books
     prettierd # pretiter daemon needs to be installed for code formatting to be working in neovim (conform plugin)
     eslint_d
     stylua
-    kotlin
-    helix 
-    emacs
-    kakoune
-    kakoune-lsp
     anydesk
     sass
     php83Packages.composer
@@ -176,6 +242,13 @@ in
     screenkey #для вывода на экран кнопок
     inkscape
     krita
+    kotlin
+
+    #editors
+    helix 
+    emacs
+    kakoune
+    kakoune-lsp
 
     #ruby stuff
     ruby_3_3
@@ -193,7 +266,11 @@ in
 
     # flutter stuff   
     dart
-    flutter319
+    # flutter309
+    # unstable.flutterPackages-source.v3_26
+    # unstable.flutterPackages-source.stable
+    unstable.flutter326
+
 
     nodePackages.typescript-language-server
     nodePackages.vscode-langservers-extracted
@@ -207,7 +284,7 @@ in
     
  ];
 
-
+  #enables nix-ld, a compatibility layer for dynamically linked executables.
   programs.nix-ld.enable = true;
   programs.nix-ld.libraries = with pkgs; [
     # Add any missing dynamic libraries for unpackaged programs
@@ -258,7 +335,10 @@ in
   # networking.proxy.default = "http://user:password@proxy:port/";
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
   # Enable networking
-  networking.networkmanager.enable = true;
+  networking.networkmanager = {
+    enable = true;
+    wifi.powersave = false;
+  };
   # Set your time zone.
   time.timeZone = "Europe/Kyiv";
   # Select internationalisation properties.
