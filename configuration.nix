@@ -79,11 +79,11 @@ in
   services.dbus.enable = true;
 
   # Enable the GNOME Desktop Environment.
-    services.xserver.displayManager.gdm.enable = true;
-    services.xserver.desktopManager.gnome.enable = true;
+    # services.xserver.displayManager.gdm.enable = true;
+    # services.xserver.desktopManager.gnome.enable = true;
 
   # Enable Cinnamon Desktop
-   # services.xserver.desktopManager.cinnamon.enable = true;
+   services.xserver.desktopManager.cinnamon.enable = true;
 
 
   # Enable automatic garbage collection
@@ -263,6 +263,10 @@ in
     
     #c stuff
     raylib
+    clang
+    cmake
+    ninja
+    gcc
 
     # flutter stuff   
     dart
