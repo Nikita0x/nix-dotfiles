@@ -155,6 +155,25 @@ in
   # $ nix search wget
   environment.systemPackages = with pkgs; [
 
+ 
+ # libray for videos idk - required for some flutter apps or else crashes.
+ # gotta fix in the future
+ # https://nixos.wiki/wiki/GStreamer 
+ gst_all_1.gstreamer                  # Core GStreamer library
+ gst_all_1.gst-plugins-base           # Essential plugins
+ gst_all_1.gst-plugins-good           # Good-quality plugins under LGPL
+ gst_all_1.gst-plugins-bad            # Plugins not up to par yet
+ gst_all_1.gst-plugins-ugly           # Plugins with problematic licenses
+ gst_all_1.gst-libav                  # Libav-based plugins for multimedia   
+
+  #OBS streaming
+    (pkgs.wrapOBS {
+        plugins = with pkgs.obs-studio-plugins; [
+          wlrobs
+          obs-backgroundremoval
+          obs-pipewire-audio-capture
+        ];
+      })
 
 
   
