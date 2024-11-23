@@ -126,7 +126,7 @@ in
     enable = true;
     config = {
       user.name = "Nikita0x";
-      user.email = "klirmio21@gmail.com";
+      user.email = "<YOUR_EMAIL_HERE>";
     };
   };
   programs.neovim = {
