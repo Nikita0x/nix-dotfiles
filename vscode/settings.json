@@ -24,20 +24,21 @@
 	"editor.cursorStyle": "line-thin",
 	"editor.cursorWidth": 3,
 	"editor.cursorBlinking": "phase",
-	"editor.bracketPairColorization.enabled": false,
+	"editor.bracketPairColorization.enabled": true,
 	"workbench.colorCustomizations": {
 		"tab.activeBackground": "#00042b90",
 		"editorCursor.foreground": "#fff",
 		"editor.background": "#1e1e1e",
 		"editor.selectionBackground": "#000",
 		"editorLineNumber.foreground": "#676867",
-		"editorLineNumber.activeForeground": "#fff"
-		// "editorBracketHighlight.foreground1": "red",
-		// "editorBracketHighlight.foreground2": "red",
-		// "editorBracketHighlight.foreground3": "red",
-		// "editorBracketHighlight.foreground4": "red",
-		// "editorBracketHighlight.foreground5": "red",
-		// "editorBracketHighlight.foreground6": "red"
+		"editorLineNumber.activeForeground": "#fff",
+		// change colors if needed
+		"editorBracketHighlight.foreground1": "#676867",
+		"editorBracketHighlight.foreground2": "#676867",
+		"editorBracketHighlight.foreground3": "#676867",
+		"editorBracketHighlight.foreground4": "#676867",
+		"editorBracketHighlight.foreground5": "#676867",
+		"editorBracketHighlight.foreground6": "#676867"
 	},
 	"editor.formatOnSave": true,
 	"explorer.confirmPasteNative": false,
@@ -134,11 +135,37 @@
 			"fontStyle": ""
 		},
 		"comments": "#525252",
-		"types": "#931600",
-		// "variables": "#4FC1FF",
-
 		// Javascript / Typescript
 		"textMateRules": [
+			{
+				"scope": "entity.name.type.class",
+				"settings": {
+					"foreground": "#4EC9B0",
+					"fontStyle": "italic"
+				}
+			},
+			{
+				"scope": ["entity.name.type.interface"],
+				"settings": {
+					"foreground": "#53b20b",
+					"fontStyle": ""
+				}
+			},
+			{
+				"scope": ["entity.name.type"],
+				"settings": {
+					"foreground": "#53b20b",
+					"fontStyle": ""
+				}
+			},
+			// types
+			{
+				"scope": ["support.type"],
+				"settings": {
+					"foreground": "#4EC9B0",
+					"fontStyle": ""
+				}
+			},
 			// colors for true / false
 			{
 				"scope": [
@@ -199,13 +226,6 @@
 			// 		"foreground": "#0d9c00"
 			// 	}
 			// },
-			// IN PROGRESS, interface,
-			{
-				"scope": ["entity.name.type.interface"],
-				"settings": {
-					"foreground": "#53b20b"
-				}
-			},
 			// other
 			{
 				"scope": [
@@ -299,14 +319,6 @@
 			// 	// }
 			// },
 
-			// types
-			{
-				"scope": ["support.type"],
-				"settings": {
-					// "foreground": "#676867"
-					"foreground": "#4EC9B0"
-				}
-			},
 			// escape character
 			{
 				"scope": "constant.character.escape",
@@ -410,7 +422,8 @@
 			{
 				"scope": "support.type.property-name.css",
 				"settings": {
-					"foreground": "#676867"
+					"foreground": "#676867",
+					"fontStyle": ""
 				}
 			},
 			{
@@ -501,6 +514,12 @@
 				"settings": {
 					"foreground": "#23c000",
 					"fontStyle": ""
+				}
+			},
+			{
+				"scope": "keyword.operator.increment-decrement.dart",
+				"settings": {
+					"foreground": "#F92672"
 				}
 			}
 		]
@@ -751,5 +770,6 @@
 		"шрифта",
 		"элементы",
 		"этот"
-	]
+	],
+	"cmake.showConfigureWithDebuggerNotification": false
 }
