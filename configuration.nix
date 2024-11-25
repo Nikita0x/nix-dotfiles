@@ -146,6 +146,21 @@ in
   programs.ladybird = {
     enable = true;
   };
+  # Aliases
+  environment.shellAliases = {
+    rebuild = "sudo nixos-rebuild switch";
+    config = "sudo hx /etc/nixos/configuration.nix";
+    config-update = "sudo cp -ur /etc/nixos/* ~/github/nix-dotfiles/";
+    open = "xdg-open";
+    nvim-update = "cp -ur ~/.config/nvim/* ~/github/nix-dotfiles/nvim/";
+    config-nvim = "cd ~/.config/nvim && nvim ~/.config/nvim";
+    dotfiles = "nvim ~/github/nix-dotfiles/";
+    c = "cd";
+    lg = "lazygit";
+    config-hyperland = "nvim ~/.config/hypr/hyprland.conf";
+    sublime-merge = "/nix/store/lwyag77m1pvy0a8wg272f5kskrjwbwcx-sublime-merge-2095/bin/sublime_merge";
+    clipboard = "xclip -selection clipboard";
+  };
   environment.variables = {
     EDITOR = "nvim";
     VISUAL = "nvim";
@@ -209,7 +224,7 @@ in
     # arc-browser
 
     sublime-merge-dev #gui git
-    unstable.code-cursor
+    #unstable.code-cursor
     wget
     home-manager
     neofetch
@@ -303,7 +318,7 @@ in
     rust-analyzer
     tailwindcss-language-server
     nodePackages_latest.vls 
-    nodePackages_latest."@volar/vue-language-server"
+    #nodePackages_latest."@volar/vue-language-server"
     
  ];
 

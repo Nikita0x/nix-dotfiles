@@ -1,6 +1,8 @@
 NixOS quirks:
-1) During installation, select GNOME! <---- IMPROTANT
-2) Before rebuilding, do `nix-shell -p git`;
+
+1. During installation, select GNOME! <---- IMPROTANT
+2. Before rebuilding, do `nix-shell -p git`;
+3. Add email - user.email = "<YOUR-EMAIL>"
 
 You also need to generate new SSH key for Github (after fresh install)
 
@@ -13,5 +15,4 @@ You also need to generate new SSH key for Github (after fresh install)
 6) Github -> Profile -> Settings -> SSH and GPG keys -> New SSH key
 
 #Neovim config
-drop files into `/home/nikita/.config/nvim` 
-
+drop files into `/home/nikita/.config/nvim`
