@@ -1,3 +1,7 @@
+NixOS quirks:
+1) During installation, select GNOME! <---- IMPROTANT
+2) Before rebuilding, do `nix-shell -p git`;
+
 You also need to generate new SSH key for Github (after fresh install)
 
 1. `ssh-keygen -t ed25519 -C "email@gmail.com"` //generate new key
@@ -11,10 +15,3 @@ You also need to generate new SSH key for Github (after fresh install)
 #Neovim config
 drop files into `/home/nikita/.config/nvim` 
 
-
-
-testing LazyGit
-a new commit - hahaha JOKAR
-fixup tested here???
-one more 
-amend my sins 
